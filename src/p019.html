@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+	<script src="helper.js"></script>
 	<style type="text/css">
 		body {
 			font-family: monospace;
@@ -7,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 19</title>
 	<meta charset="utf-8">
 </head>
 
@@ -15,12 +16,7 @@
 </body>
 
 <script>
-	/*
-		jan	feb	march	april	may	june	july	august	september	october	november	december
-		31	28	31		30		31	30		31		31		30			31		30			31
-1	*/
 
-	const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 	var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	start();
 
@@ -36,7 +32,7 @@
 			day = ++day % 7;
 
 			if((dt[0] == 1) && (day == 0)) {
-				log("dt", dt);
+				// log("dt", dt);
 				count++;		
 			}
 
@@ -88,10 +84,6 @@
 
 		arr = [date, month, year];
 		return arr;
-	}
-
-	function log(text, value) {
-		document.write(text + ": " + value + "<br>");
 	}
 
 </script>

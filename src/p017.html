@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+	<script src="helper.js"></script>
 	<style type="text/css">
 		body {
 			font-family: monospace;
@@ -7,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 17</title>
 	<meta charset="utf-8">
 </head>
 
@@ -30,7 +31,7 @@
 			var s = withLetters(i);	
 			s = s.replace(/\s/g, "");
 			sum += s.length;
-			log("s", s);
+			// log("s", s);
 		}
 
 		log("length", sum);
@@ -67,14 +68,9 @@
 		}
 
 		s = s.replace(/\s/g, "");
-		document.write("n: " + n + ", s: " + s + "<br>");
+		// document.write("n: " + n + ", s: " + s + "<br>");
 
 		return s;
-	}
-
-
-	function log(text, value) {
-		document.write(text + ": " + value + "<br>");
 	}
 
 </script>

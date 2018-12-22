@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+	<script src="helper.js"></script>
 	<style type="text/css">
 		body {
 			font-family: monospace;
@@ -7,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 18</title>
 	<meta charset="utf-8">
 </head>
 
@@ -52,10 +53,6 @@
 
 		while(row++ < s.length) {
 			iterate(path);
-		}
-
-		for(var row = 0; row < path.length; row++) {
-			log("path[" + row + "]", path[row]);
 		}
 
 		max(path);
@@ -112,10 +109,6 @@
 
 		log("s", s);				
 		return s;
-	}
-
-	function log(text, value) {
-		document.write(text + ": " + value + "<br>");
 	}
 
 </script>

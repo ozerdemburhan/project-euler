@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+	<script src="helper.js"></script>
 	<style type="text/css">
 		body {
 			font-family: monospace;
@@ -7,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 16</title>
 	<meta charset="utf-8">
 </head>
 
@@ -30,32 +31,7 @@
 			sum += Number(s.substr(i, 1));
 		}
 
-		log("sum", sum);
-	}
-
-	function singleMul(s1, s2) {
-		var p2 = Number(s2);
-		var borrow = 0;
-		var result = "";
-
-		for(var i = s1.length - 1; i >= 0; i--) {
-			var p1 = Number(s1.substr(i, 1));
-			var mul = borrow + p1 * p2;
-			borrow = Math.floor(mul / 10);
-			var r = mul % 10;
-			result = r + result;
-		}
-
-		if(borrow > 0) {
-			result = String(borrow) + result;
-		}
-
-		return result;
-	}
-
-
-	function log(text, value) {
-		document.write(text + ": " + value + "<br>");
+		document.write("sum: " + (sum) + "<br>");
 	}
 
 </script>
