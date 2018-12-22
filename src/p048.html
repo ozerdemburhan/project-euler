@@ -3,26 +3,26 @@
     <script src="helper.js"></script>
     <link rel="stylesheet" href="main.css">
 
-	<title>Problem 48</title>
-	<meta charset="utf-8">
+    <title>Problem 48</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-		var arr = [];
+    function start() {
+        var arr = [];
 
         for(var n = 1; n <= 1000; n++) {
             arr.push(powerMod(n, n));
         }
 
-		var result = arraySum(arr);
-		document.write("result: " + (result.substr(-10)) + "<br>");
-	}
+        var result = arraySum(arr);
+        document.write("result: " + (result.substr(-10)) + "<br>");
+    }
 
     function powerMod(a, b) {
         if(a == 0) {
@@ -41,7 +41,7 @@
             result = bigMul(result, String(a));
             if(result.length > 11) {
                 result = result.substr(-11);
-			}
+            }
         }
 
         return result;

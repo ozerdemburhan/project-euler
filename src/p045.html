@@ -3,31 +3,31 @@
     <script src="helper.js"></script>
     <link rel="stylesheet" href="main.css">
 
-	<title>Problem 45</title>
-	<meta charset="utf-8">
+    <title>Problem 45</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-	    for(var n = 286; n < 100000; n++) {
-	        var t = T(n);
-	        if(check(t, n)) {
-	            document.write("n: " + n + ", t: " + t + "<br>");
-	            break;
-			}
-		}
-	}
+    function start() {
+        for(var n = 286; n < 100000; n++) {
+            var t = T(n);
+            if(check(t, n)) {
+                document.write("n: " + n + ", t: " + t + "<br>");
+                break;
+            }
+        }
+    }
 
-	function check(t, n) {
-	    return checkPentagonal(t, n) && checkHexagonal(t, n);
-	}
+    function check(t, n) {
+        return checkPentagonal(t, n) && checkHexagonal(t, n);
+    }
 
-	function checkHexagonal(t, n) {
+    function checkHexagonal(t, n) {
         for(var i = 0; i < n; i++) {
             var h = H(i);
             if(h == t) {
@@ -36,9 +36,9 @@
         }
 
         return false;
-	}
+    }
 
-	function checkPentagonal(t, n) {
+    function checkPentagonal(t, n) {
         for(var i = 0; i < n; i++) {
             var p = P(i);
             if(p == t) {
@@ -47,19 +47,19 @@
         }
 
         return false;
-	}
+    }
 
-	function T(n) {
-	    return n*(n+1)/2;
-	}
+    function T(n) {
+        return n*(n+1)/2;
+    }
 
-	function P(n) {
-	    return n*(3*n-1)/2;
-	}
+    function P(n) {
+        return n*(3*n-1)/2;
+    }
 
-	function H(n) {
-	    return n*(2*n-1);
-	}
+    function H(n) {
+        return n*(2*n-1);
+    }
 
 </script>
 

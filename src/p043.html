@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<link rel="stylesheet" href="main.css">
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
 
-	<title>Problem 43</title>
-	<meta charset="utf-8">
+    <title>Problem 43</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-	    var sum = 0;
+    function start() {
+        var sum = 0;
 
         for(var i = 1; i <= 9; i++) {
             for(var k2 = 0; k2 < 1000; k2 += 2) {
@@ -24,59 +24,59 @@
                     var term345 = padLeft(k3);
                     if(term345.substr(0, 2) != term234.substr(1)) {
                         continue;
-					}
+                    }
 
-					for(var k5 = 0; k5 < 1000; k5 += 5) {
-					    var term456 = padLeft(k5);
-					    if(term456.substr(0, 2) != term345.substr(1)) {
-					        continue;
-						}
+                    for(var k5 = 0; k5 < 1000; k5 += 5) {
+                        var term456 = padLeft(k5);
+                        if(term456.substr(0, 2) != term345.substr(1)) {
+                            continue;
+                        }
 
-						for(var k7 = 0; k7 < 1000; k7 += 7) {
-						    var term567 = padLeft(k7);
-						    if(term567.substr(0, 2) != term456.substr(1)) {
-						        continue;
-							}
+                        for(var k7 = 0; k7 < 1000; k7 += 7) {
+                            var term567 = padLeft(k7);
+                            if(term567.substr(0, 2) != term456.substr(1)) {
+                                continue;
+                            }
 
-							for(var k11 = 0; k11 < 1000; k11 += 11) {
-							    var term678 = padLeft(k11);
-							    if(term678.substr(0, 2) != term567.substr(1)) {
-							        continue;
-								}
+                            for(var k11 = 0; k11 < 1000; k11 += 11) {
+                                var term678 = padLeft(k11);
+                                if(term678.substr(0, 2) != term567.substr(1)) {
+                                    continue;
+                                }
 
-								for(var k13 = 0; k13 < 1000; k13 += 13) {
-								    var term789 = padLeft(k13);
-								    if(term789.substr(0, 2) != term678.substr(1)) {
-								        continue;
-									}
+                                for(var k13 = 0; k13 < 1000; k13 += 13) {
+                                    var term789 = padLeft(k13);
+                                    if(term789.substr(0, 2) != term678.substr(1)) {
+                                        continue;
+                                    }
 
-									for(var k17 = 0; k17 < 1000; k17 += 17) {
-									    var term890 = padLeft(k17);
-									    if(term890.substr(0, 2) != term789.substr(1)) {
-									        continue;
-										}
+                                    for(var k17 = 0; k17 < 1000; k17 += 17) {
+                                        var term890 = padLeft(k17);
+                                        if(term890.substr(0, 2) != term789.substr(1)) {
+                                            continue;
+                                        }
 
                                         var s = String(i) + term234 + term567 + term890;
                                         if(isPandigital(s, 0, 9)) {
                                             sum += Number(s);
                                             document.write("s: " + (s) + "<br>");
                                         }
-									}
-								}
-							}
-						}
-					}
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
 
         document.write("sum: " + (sum) + "<br>");
-	}
+    }
 
-	function padLeft(n) {
-	    var s = String(n);
-	    return "0".repeat(3 - s.length) + s;
-	}
+    function padLeft(n) {
+        var s = String(n);
+        return "0".repeat(3 - s.length) + s;
+    }
 
 </script>
 

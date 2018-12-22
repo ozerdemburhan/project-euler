@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<link rel="stylesheet" href="main.css">
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
 
-	<title>Problem 49</title>
-	<meta charset="utf-8">
+    <title>Problem 49</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	var primes = [];
-	start();
+    var primes = [];
+    start();
 
-	function start() {
-	    primes = generatePrimes(1000, 10000);
-	    document.write("primes.length: " + (primes.length) + "<br>");
+    function start() {
+        primes = generatePrimes(1000, 10000);
+        document.write("primes.length: " + (primes.length) + "<br>");
 
-	    var l = primes.length;
+        var l = primes.length;
 
-	    for(var i = 0; i < l - 2; i++) {
-	        for(var j = i + 1; j < l - 1; j++) {
-	            for(var k = j + 1; k < l; k++) {
-	                if(primes[k] - primes[j] == primes[j] - primes[i]) {
-	                    var arr = [primes[i], primes[j], primes[k]];
-	                    if(checkPermutations(primes[i], primes[j], primes[k])) {
-							document.write("arr: " + (arr.join("")) + "<br>");
+        for(var i = 0; i < l - 2; i++) {
+            for(var j = i + 1; j < l - 1; j++) {
+                for(var k = j + 1; k < l; k++) {
+                    if(primes[k] - primes[j] == primes[j] - primes[i]) {
+                        var arr = [primes[i], primes[j], primes[k]];
+                        if(checkPermutations(primes[i], primes[j], primes[k])) {
+                            document.write("arr: " + (arr.join("")) + "<br>");
                         }
-					}
-				}
-			}
-		}
-	}
+                    }
+                }
+            }
+        }
+    }
 
-	function checkPermutations(p1, p2, p3) {
-	    var s1 = getPermutation(p1);
-	    var s2 = getPermutation(p2);
-	    var s3 = getPermutation(p3);
+    function checkPermutations(p1, p2, p3) {
+        var s1 = getPermutation(p1);
+        var s2 = getPermutation(p2);
+        var s3 = getPermutation(p3);
 
-	    if(getObjectSize(s1) != getObjectSize(s2)) {
-	        return false;
-		}
+        if(getObjectSize(s1) != getObjectSize(s2)) {
+            return false;
+        }
 
-		if(getObjectSize(s1) != getObjectSize(s3)) {
-		    return false;
-		}
+        if(getObjectSize(s1) != getObjectSize(s3)) {
+            return false;
+        }
 
-		for(var key in s1) {
-		    var v1 = s1[key];
-		    var v2 = s2[key];
-		    var v3 = s3[key];
+        for(var key in s1) {
+            var v1 = s1[key];
+            var v2 = s2[key];
+            var v3 = s3[key];
 
-		    if((v1 != v2) || (v1 != v3)) {
-		        return false;
-			}
-		}
+            if((v1 != v2) || (v1 != v3)) {
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	function getPermutation(n) {
+    function getPermutation(n) {
         var set = {};
 
         var s = String(n);
@@ -74,7 +74,7 @@
         }
 
         return set;
-	}
+    }
 
     function generatePrimes(lbound, ubound) {
         primes = [2];
@@ -98,8 +98,8 @@
         for(var i = primes.length - 1; i >= 0; i--) {
             if(primes[i] < lbound) {
                 primes.splice(i, 1);
-			}
-		}
+            }
+        }
 
         return primes;
     }

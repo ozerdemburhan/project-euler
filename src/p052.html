@@ -3,39 +3,39 @@
     <script src="helper.js"></script>
     <link rel="stylesheet" href="main.css">
 
-	<title>Problem 52</title>
-	<meta charset="utf-8">
+    <title>Problem 52</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-	    for(var i = 1; i < 150000; i++) {
-			checkNumber(i);
-		}
-	}
+    function start() {
+        for(var i = 1; i < 150000; i++) {
+            checkNumber(i);
+        }
+    }
 
-	function checkNumber(n) {
-	    var s = getDigits(n).toString();
-	    var check = true;
+    function checkNumber(n) {
+        var s = getDigits(n).toString();
+        var check = true;
 
-	    for(var i = 2; i <= 6; i++) {
-	        var si = getDigits(i*n).toString();
-	        check = check && (si === s);
-		}
+        for(var i = 2; i <= 6; i++) {
+            var si = getDigits(i*n).toString();
+            check = check && (si === s);
+        }
 
-		if(check) {
-		    document.write("n: " + (n) + "<br>");
-		}
+        if(check) {
+            document.write("n: " + (n) + "<br>");
+        }
 
-		return check;
-	}
+        return check;
+    }
 
-	function getDigits(n) {
+    function getDigits(n) {
         var result = [];
         var arr = n.toString().split("");
 
@@ -47,7 +47,7 @@
 
         result.sort();
         return result;
-	}
+    }
 
 
 </script>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<script src="p054.js"></script>
+    <script src="helper.js"></script>
+    <script src="p054.js"></script>
     <link rel="stylesheet" href="main.css">
 
-	<title>Problem 54</title>
-	<meta charset="utf-8">
+    <title>Problem 54</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
@@ -13,45 +13,45 @@
 
 <script>
 
-	start();
+    start();
 
-	function start() {
-	    var player1Wins = 0;
-	    document.write("length: " + HANDS.length + "<br>");
+    function start() {
+        var player1Wins = 0;
+        document.write("length: " + HANDS.length + "<br>");
 
-	    for(var i = 0; i < HANDS.length; i++) {
-	        var s = HANDS[i];
-	        var hands = getHands(s);
-	        var hand1 = hands[0];
-	        var hand2 = hands[1];
+        for(var i = 0; i < HANDS.length; i++) {
+            var s = HANDS[i];
+            var hands = getHands(s);
+            var hand1 = hands[0];
+            var hand2 = hands[1];
 
-	        if(compare(hand1, hand2)) {
-	            player1Wins++;
+            if(compare(hand1, hand2)) {
+                player1Wins++;
             }
-		}
+        }
 
-		document.write("player1 wins: " + (player1Wins) + "<br>");
-	}
+        document.write("player1 wins: " + (player1Wins) + "<br>");
+    }
 
-	function checkResult(c, text) {
+    function checkResult(c, text) {
         if(c != NO_WINNER) {
             if(c == PLAYER1_WINS) {
                 // document.write("player1 has " + text + "<br>");
             } else {
                 // document.write("player2 has " + text + "<br>");
             }
-		}
-	}
+        }
+    }
 
     function compare(hand1, hand2) {
-	    var c = compareForStraightFlush(hand1, hand2);
-	    checkResult(c, "straight flush");
-	    if(c != NO_WINNER) {
-	        return (c == PLAYER1_WINS);
-		}
+        var c = compareForStraightFlush(hand1, hand2);
+        checkResult(c, "straight flush");
+        if(c != NO_WINNER) {
+            return (c == PLAYER1_WINS);
+        }
 
-		c = compareForFourOfAKind(hand1, hand2);
-		checkResult(c, "four of a kind");
+        c = compareForFourOfAKind(hand1, hand2);
+        checkResult(c, "four of a kind");
         if(c != NO_WINNER) {
             return (c == PLAYER1_WINS);
         }
@@ -68,8 +68,8 @@
             return (c == PLAYER1_WINS);
         }
 
-		c = compareForStraight(hand1, hand2);
-		checkResult(c, "straight");
+        c = compareForStraight(hand1, hand2);
+        checkResult(c, "straight");
         if(c != NO_WINNER) {
             return (c == PLAYER1_WINS);
         }
@@ -80,52 +80,52 @@
             return (c == PLAYER1_WINS);
         }
 
-		c = compareForTwoPairs(hand1, hand2);
-		checkResult(c, "two pairs");
+        c = compareForTwoPairs(hand1, hand2);
+        checkResult(c, "two pairs");
         if(c != NO_WINNER) {
             return (c == PLAYER1_WINS);
         }
 
-		c = compareForOnePair(hand1, hand2);
-		checkResult(c, "one pair");
+        c = compareForOnePair(hand1, hand2);
+        checkResult(c, "one pair");
         if(c != NO_WINNER) {
             return (c == PLAYER1_WINS);
         }
 
-		c = compareForHighestCard(hand1, hand2);
-		checkResult(c, "highest card");
+        c = compareForHighestCard(hand1, hand2);
+        checkResult(c, "highest card");
         if(c != NO_WINNER) {
             return (c == PLAYER1_WINS);
         }
 
         if(c == NO_WINNER) {
             document.write("NO WINNER" + "<br>");
-		}
+        }
 
-		return false;
+        return false;
     }
 
 
-	function getHands(s) {
+    function getHands(s) {
         var arr2 = s.split(" ");
         var arr1 = arr2.splice(0, 5);
 
         var hand1 = getHand(arr1);
         var hand2 = getHand(arr2);
 
-	    return [hand1, hand2];
-	}
+        return [hand1, hand2];
+    }
 
-	function getHand(arr) {
-	    var suits = getHandSuits(arr);
-	    var values = getHandValues(arr);
+    function getHand(arr) {
+        var suits = getHandSuits(arr);
+        var values = getHandValues(arr);
 
-	    var hand = {};
-	    hand["suits"] = suits;
-	    hand["values"] = values;
+        var hand = {};
+        hand["suits"] = suits;
+        hand["values"] = values;
 
-	    return hand;
-	}
+        return hand;
+    }
 
     function getHandValues(arr) {
         var values = {};
@@ -145,30 +145,30 @@
         return values;
     }
 
-	function getHandSuits(arr) {
-	    var suits = {};
+    function getHandSuits(arr) {
+        var suits = {};
 
-	    for(var i = 0; i < arr.length; i++) {
-	        var suit = arr[i].substr(1, 1);
-	        var value = arr[i].substr(0, 1);
-	        var values = suits[suit];
+        for(var i = 0; i < arr.length; i++) {
+            var suit = arr[i].substr(1, 1);
+            var value = arr[i].substr(0, 1);
+            var values = suits[suit];
 
-	        if(!values)  {
+            if(!values)  {
                 values = [];
-			}
-			values.push(value);
+            }
+            values.push(value);
             suits[suit] = values;
-		}
+        }
 
-		for(var suit in suits) {
-		    var values = suits[suit];
-		    values.sort(function(a, b) {
-		        return VALUES.indexOf(a) - VALUES.indexOf(b);
-			});
-		}
+        for(var suit in suits) {
+            var values = suits[suit];
+            values.sort(function(a, b) {
+                return VALUES.indexOf(a) - VALUES.indexOf(b);
+            });
+        }
 
-		return suits;
-	}
+        return suits;
+    }
 
 </script>
 

@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<link rel="stylesheet" href="main.css">
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
 
-	<title>Problem 27</title>
-	<meta charset="utf-8">
+    <title>Problem 27</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-		var primeCount = 0;
-		var maxa = 0;
-		var maxb = 0;
+    function start() {
+        var primeCount = 0;
+        var maxa = 0;
+        var maxb = 0;
 
-		for(var a = -999; a <= 999; a++) {
-			for(var b = -1000; b <= 1000; b++) {
-				var count = countPrimes(a, b);
-				if(primeCount < count) {
-					primeCount = count;
-					maxa = a;
-					maxb = b;
-				}
-			}
-		}
+        for(var a = -999; a <= 999; a++) {
+            for(var b = -1000; b <= 1000; b++) {
+                var count = countPrimes(a, b);
+                if(primeCount < count) {
+                    primeCount = count;
+                    maxa = a;
+                    maxb = b;
+                }
+            }
+        }
 
-		log("mul", (maxa*maxb));
-	}
+        log("mul", (maxa*maxb));
+    }
 
-	function countPrimes(a, b) {
-		var n = 0;
-		var value = n*n + a*n + b;
+    function countPrimes(a, b) {
+        var n = 0;
+        var value = n*n + a*n + b;
 
-		while(isPrimeGeneric(value)) {
-			n++;
-			value = n*n + a*n + b;
-		}
+        while(isPrimeGeneric(value)) {
+            n++;
+            value = n*n + a*n + b;
+        }
 
-		return n;
-	}
+        return n;
+    }
 
 </script>
 

@@ -3,35 +3,35 @@
     <script src="helper.js"></script>
     <link rel="stylesheet" href="main.css">
 
-	<title>Problem 47</title>
-	<meta charset="utf-8">
+    <title>Problem 47</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	var primes = [];
-	start();
+    var primes = [];
+    start();
 
-	function start() {
-	    primes = preparePrimes(10000);
+    function start() {
+        primes = preparePrimes(10000);
 
-		for(var i = 2; i < 1000000; i++) {
-		    var check = true;
+        for(var i = 2; i < 1000000; i++) {
+            var check = true;
 
-		    for(var j = 0; j < 4; j++) {
-		        var set = getPrimeFactors(primes, i + j);
-		        check = check && (Object.keys(set).length == 4);
-			}
-
-		    if(check) {
-		        document.write("i: " + (i) + "<br>");
-		        break;
+            for(var j = 0; j < 4; j++) {
+                var set = getPrimeFactors(primes, i + j);
+                check = check && (Object.keys(set).length == 4);
             }
-		}
 
-	}
+            if(check) {
+                document.write("i: " + (i) + "<br>");
+                break;
+            }
+        }
+
+    }
 
 
 
