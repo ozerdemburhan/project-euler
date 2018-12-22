@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+	<script src="helper.js"></script>
 	<style type="text/css">
 		body {
 			font-family: monospace;
@@ -23,17 +24,19 @@
 	start();
 
 	function start() {
-		var ubound = s.length - 13;
-		log("ubound", ubound);
-
 		var arr = [];
 
-		for(var i = 0; i < ubound; i++) {
-			var mm = mul(i, 13);
+		for(var i = 0; i < s.length-13; i++) {
+		    var mm = "1";
+		    for(j = i; j < i+13; j++) {
+                var s2 = s.substr(j, 1);
+                mm = singleMul(mm, s2);
+			}
+
 			arr.push(mm);
 		}
 
-		padLeft(arr);
+		padLeft(arr, "0");
 
 		var max = "";
 
@@ -43,106 +46,8 @@
 			}
 		}
 
-		log("max", max);
+		document.write("max: " + (max) + "<br>");
 	}
-
-	function mul(index, limit) {
-		var mm = "1";
-
-		for(var i = 0; i < limit; i++) {
-			var s2 = s.substr(index + i, 1);
-			mm = bigmul(mm, s2);
-		}
-
-		return mm;
-	}
-
-	function bigmul(s1, s2) {
-		var arr = [];
-		for(var i = s1.length - 1; i >= 0; i--) {
-			var p1 = s1.substr(i, 1);
-			var borrow = 0;
-			var s = "";
-
-			for(var j = s2.length - 1; j >= 0; j--) {
-				var p2 = s2.substr(j, 1);
-
-				var m = borrow + (Number(p1) * Number(p2));
-				borrow = Math.floor(m / 10);
-				var remain = String(m % 10);
-				s = remain + s;
-			}
-
-			if(borrow > 0) {
-				s = String(borrow) + s;
-			}
-
-			arr.push(s);
-		}
-
-		pad(arr);
-		return sum(arr);
-	}
-
-	function log(text, value) {
-		document.write(text + ": " + value + "<br>");
-	}
-
-	function sum(arr) {
-		var result = "";
-		var length = arr[0].length;
-		var borrow = 0;
-
-		for(var i = length - 1; i >= 0; i--) {
-			var sum = 0;
-
-			for(var j = 0; j < arr.length; j++) {
-				var p = arr[j].substr(i, 1);
-				sum += Number(p);
-			}
-
-			result = (borrow + sum % 10) + result;
-			borrow = Math.floor(sum / 10);
-		}
-
-
-		if(borrow > 0) {
-			result = String(borrow) + result;
-		}
-
-		return result;
-	}
-
-	function pad(arr) {
-		var l = 0;
-		for(var i = 0; i < arr.length; i++) {
-			if(i > 0) {
-				arr[i] = arr[i] + "0".repeat(i);	
-			}
-			
-			if(l < arr[i].length) {
-				l = arr[i].length;
-			}
-		}
-
-		for(var i = 0; i < arr.length; i++) {
-			arr[i] = "0".repeat(l - arr[i].length) + arr[i];
-		}
-	}
-
-	function padLeft(arr) {
-		var length = 0;
-
-		for(var i = 0; i < arr.length; i++) {
-			if(length < arr[i].length) {
-				length = arr[i].length;
-			}
-		}
-
-		for(var i = 0; i < arr.length; i++) {
-			arr[i] = "0".repeat(length - arr[i].length) + arr[i];
-		}
-	} 
 
 </script>
 

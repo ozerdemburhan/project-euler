@@ -47,13 +47,13 @@
 		prepareGrid();
 
 		var mul = max();
-		log("max", mul);
+		document.write("mul: " + (mul) + "<br>");
 	}
 
 	function max() {
 		var maxLR = 0, maxUD = 0, maxD1 = 0, maxD2 = 0;
 
-		for(row = 0; row < N - 3; row++) {
+		for(var row = 0; row < N - 3; row++) {
 			for(var col = 0; col < N - 3; col++) {
 				var mulLR = grid[row][col] * grid[row][col + 1] * grid[row][col + 2] * grid[row][col + 3];
 				var mulUD = grid[row][col] * grid[row + 1][col] * grid[row + 2][col] * grid[row + 3][col];
@@ -78,10 +78,10 @@
 			}
 		}
 
-		log("maxLR", maxLR);
-		log("maxUD", maxUD);
-		log("maxD1", maxD1);
-		log("maxD2", maxD2);
+		document.write("maxLR: " + (maxLR) + "<br>");
+		document.write("maxUD: " + (maxUD) + "<br>");
+		document.write("maxD1: " + (maxD1) + "<br>");
+		document.write("maxD2: " + (maxD2) + "<br>");
 
 		return Math.max(maxLR, maxUD, maxD1, maxD2);
 	}
@@ -98,13 +98,7 @@
 			grid.push(r);
 		}
 
-		log("grid prepared.");
-
-
-	}
-
-	function log(text, value) {
-		document.write(text + ": " + value + "<br>");
+		document.write("grid prepared." + "<br>");
 	}
 
 </script>

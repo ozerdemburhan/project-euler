@@ -19,21 +19,6 @@
 	start();
 
 	function start() {
-//		var divisors = findDivisors(28);
-//		log("divisors", JSON.stringify(divisors));
-//		var divisorsCount = getDivisorsCount(divisors);
-//		log("divisors count", divisorsCount);
-
-//		var n = 1;
-//		var divisors = findDivisors(n);
-//		while(getDivisorsCount(divisors) < 500) {
-//			divisors = findDivisors(triangle(++n));
-//		}
-
-//		log("n", n);
-//		log("count", getDivisorsCount(divisors));
-//		log("divisors", JSON.stringify(divisors));
-
 		var n = 1;
 		var sum = 1;
 		var tr = findDivisors(n);
@@ -48,16 +33,6 @@
 		var count = getDivisorsCount(findDivisors(sum));
 		log("count", count);
 		log("divisors", JSON.stringify(tr));
-	}
-
-	function triangle(n) {
-		var sum = 0;
-
-		for(var i = 1; i <= n; i++) {
-			sum += i;
-		}
-
-		return sum;
 	}
 
 	function findDivisors(n) {

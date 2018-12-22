@@ -148,6 +148,11 @@ function preparePrimes(n) {
 	return primes;
 }
 
+function isPrimeGeneric(n) {
+    var sqrt = Math.floor(Math.sqrt(n));
+    var primes = preparePrimes(sqrt);
+    return isPrime(primes, n);
+}
 
 function isPrime(primes, n) {
 	if(n < 2) {
@@ -200,6 +205,21 @@ function getPrimeFactors(primes, n) {
 
     return set;
 }
+
+function padLeft(arr, ch) {
+    var length = 0;
+
+    for(var i = 0; i < arr.length; i++) {
+        if(length < arr[i].length) {
+            length = arr[i].length;
+        }
+    }
+
+    for(var i = 0; i < arr.length; i++) {
+        arr[i] = ch.repeat(length - arr[i].length) + arr[i];
+    }
+}
+
 
 function getObjectSize(set) {
     var s = 0;
