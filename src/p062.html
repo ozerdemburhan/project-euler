@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 62</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 62</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-	    var cubes = [];
+    function start() {
+        var cubes = [];
 
-	    for(var i = 0; i < 10000; i++) {
-	        var cube = Math.pow(i, 3);
-	        cubes.push(cube);
-		}
+        for(var i = 0; i < 10000; i++) {
+            var cube = Math.pow(i, 3);
+            cubes.push(cube);
+        }
 
-		end:
-		for(var i = 0; i < cubes.length-1; i++) {
-		    var key1 = JSON.stringify(resolve(cubes[i]));
-		    var count = 1;
+        end:
+        for(var i = 0; i < cubes.length-1; i++) {
+            var key1 = JSON.stringify(resolve(cubes[i]));
+            var count = 1;
 
-		    for(var j = i+1; j < cubes.length; j++) {
+            for(var j = i+1; j < cubes.length; j++) {
                 var key2 = JSON.stringify(resolve(cubes[j]));
 
                 if(key1 == key2) {
                     count++;
-				}
+                }
 
-				if(count == 5) {
-				    document.write(cubes[i] + "<br>");
-				    break end;
-				}
-			}
-		}
-	}
+                if(count == 5) {
+                    document.write(cubes[i] + "<br>");
+                    break end;
+                }
+            }
+        }
+    }
 
-	function resolve(n) {
-	    var s = String(n);
-	    var set = {};
+    function resolve(n) {
+        var s = String(n);
+        var set = {};
 
-	    for(var i = 0; i < 10; i++) {
-	        set[i] = s.split(String(i)).length - 1;
-		}
+        for(var i = 0; i < 10; i++) {
+            set[i] = s.split(String(i)).length - 1;
+        }
 
-		return set;
-	}
+        return set;
+    }
 
 </script>
 

@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 38</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 38</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-	    var max;
+    function start() {
+        var max;
 
-	    for(var i = 1000; i < 10000; i++) {
-	        var concat = "";
+        for(var i = 1000; i < 10000; i++) {
+            var concat = "";
 
-	        for(var n = 1; n <= 9; n++) {
-	            concat = concat + String(i * n);
+            for(var n = 1; n <= 9; n++) {
+                concat = concat + String(i * n);
 
-	            if(n == 1) {
-	                continue;
+                if(n == 1) {
+                    continue;
                 }
 
-	            if(isPandigital(concat, 1, 9)) {
-	                max = concat;
-	                document.write("i: " + i + ", n: " + n + ", concat: " + concat + "<br>");
+                if(isPandigital(concat, 1, 9)) {
+                    max = concat;
+                    document.write("i: " + i + ", n: " + n + ", concat: " + concat + "<br>");
                     break;
                 }
             }
@@ -41,7 +41,7 @@
 
         document.write("max: " + (max) + "<br>");
 
-	}
+    }
 
 </script>
 

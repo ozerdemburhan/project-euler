@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <head>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 2</title>
-	<meta charset="utf-8">
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 2</title>
+    <meta charset="utf-8">
 </head>
 
 
@@ -16,30 +16,30 @@
 </body>
 
 <script>
-	start();
-	
-	function start() {
-		var sum = 0;
-		var n = 0;
-		var f = fibo(n);
+    start();
 
-		while(f < 4000000) {
-			if(f % 2 == 0) {
-				sum += f;
-			}
+    function start() {
+        var sum = 0;
+        var n = 0;
+        var f = fibo(n);
 
-			f = fibo(++n);
-		}
+        while(f < 4000000) {
+            if(f % 2 == 0) {
+                sum += f;
+            }
 
-		document.write("sum: " + sum + "<br>");
-	}
+            f = fibo(++n);
+        }
 
-	function fibo(n) {
-		if(n == 0) return 0;
-		if(n == 1) return 1;
+        document.write("sum: " + sum + "<br>");
+    }
 
-		return fibo(n - 2) + fibo(n - 1);
-	}
+    function fibo(n) {
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+
+        return fibo(n - 2) + fibo(n - 1);
+    }
 
 </script>
 

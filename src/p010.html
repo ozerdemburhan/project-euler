@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 10</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 10</title>
+    <meta charset="utf-8">
 </head>
 
 
@@ -18,24 +18,24 @@
 
 <script>
 
-	var primes = []
+    var primes = []
 
-	start();
+    start();
 
-	function start() {
-	    primes = preparePrimes(1500);
-		var sum = 0;
+    function start() {
+        primes = preparePrimes(1500);
+        var sum = 0;
 
-		for(var i = 2; i < 2000000; i++) {
-			var check = isPrime(primes, i);
-			if(check) {
-				sum += i;
-			}
-		}
+        for(var i = 2; i < 2000000; i++) {
+            var check = isPrime(primes, i);
+            if(check) {
+                sum += i;
+            }
+        }
 
-		document.write("primes.length: " + (primes.length) + "<br>");
-		document.write("sum: " + (sum) + "<br>");
-	}
+        document.write("primes.length: " + (primes.length) + "<br>");
+        document.write("sum: " + (sum) + "<br>");
+    }
 
 </script>
 

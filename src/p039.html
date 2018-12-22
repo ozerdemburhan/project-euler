@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 39</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 39</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-	    var set = {};
+    function start() {
+        var set = {};
 
-	    for(var a = 1; a < 1000; a++) {
-	        for(var b = 1; b < 1000; b++) {
-	            var c = Math.sqrt(a*a + b*b);
-	            if(c != Math.floor(c)) {
-	                continue;
+        for(var a = 1; a < 1000; a++) {
+            for(var b = 1; b < 1000; b++) {
+                var c = Math.sqrt(a*a + b*b);
+                if(c != Math.floor(c)) {
+                    continue;
                 }
 
                 var p = a + b + c;
-	            if(p > 1000) {
-	                continue;
+                if(p > 1000) {
+                    continue;
                 }
 
                 var count = set[p];
-	            if(!count) {
-	                count = 0;
+                if(!count) {
+                    count = 0;
                 }
                 set[p] = count+1;
             }
@@ -51,7 +51,7 @@
         }
 
         log("pmax:" + pmax + ", count", count);
-	}
+    }
 
 </script>
 

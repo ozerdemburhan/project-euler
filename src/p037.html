@@ -1,69 +1,69 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 37</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 37</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	var primes = [];
+    var primes = [];
 
-	start();
+    start();
 
-	function start() {
-		primes = preparePrimes(100000);
+    function start() {
+        primes = preparePrimes(100000);
 
-		var sum = 0;
-		var start = 10;
-		var count = 0;
+        var sum = 0;
+        var start = 10;
+        var count = 0;
 
-		while(count < 11) {
-			var s = getSerie(start);
-			if(checkSerie(s)) {
-				count++;
-				sum += start;
-				log("truncatable", start);
-			}
+        while(count < 11) {
+            var s = getSerie(start);
+            if(checkSerie(s)) {
+                count++;
+                sum += start;
+                log("truncatable", start);
+            }
 
-			start++;
-		}
+            start++;
+        }
 
-		log("sum", sum);
-	}
+        log("sum", sum);
+    }
 
-	function checkSerie(s) {
-		var prime = true;
-		for(var i = 0; i < s.length; i++) {
-			prime = prime && isPrime(primes, s[i]);
-		}
+    function checkSerie(s) {
+        var prime = true;
+        for(var i = 0; i < s.length; i++) {
+            prime = prime && isPrime(primes, s[i]);
+        }
 
-		return prime;
-	}
+        return prime;
+    }
 
-	function getSerie(n) {
-		var result = [];
-		var s = String(n);
+    function getSerie(n) {
+        var result = [];
+        var s = String(n);
 
-		for(var i = 0; i < s.length; i++) {
-			result.push(s.substr(i));
-		}
+        for(var i = 0; i < s.length; i++) {
+            result.push(s.substr(i));
+        }
 
-		for(var i = 1; i < s.length; i++) {
-			result.push(s.substring(0, i));
-		}
+        for(var i = 1; i < s.length; i++) {
+            result.push(s.substring(0, i));
+        }
 
-		return result;
-	}
+        return result;
+    }
 
 </script>
 

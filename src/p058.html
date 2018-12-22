@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 58</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 58</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	var primes = [];
-	start();
+    var primes = [];
+    start();
 
-	function start() {
-	    primes = preparePrimes(100000);
-	    var ratio = 100;
-	    var n = 2;
-	    var count = 0;
-	    var ret;
-	    var edge;
+    function start() {
+        primes = preparePrimes(100000);
+        var ratio = 100;
+        var n = 2;
+        var count = 0;
+        var ret;
+        var edge;
 
-	    while(ratio >= 10) {
-	        ret = getNextRatio(count, n);
-	        count = ret[0];
+        while(ratio >= 10) {
+            ret = getNextRatio(count, n);
+            count = ret[0];
             ratio = ret[1];
 
             edge = 2*n-1;
@@ -38,9 +38,9 @@
         }
 
         document.write("edge: " + edge + ", ratio: " + ratio + "<br>");
-	}
+    }
 
-	function getNextRatio(count, N) {
+    function getNextRatio(count, N) {
         var l = 2*N-1;
         var l1 = l - 1;
         var rb = l*l;
@@ -68,7 +68,7 @@
         var ratio = count * 100.0 / diagCount;
 
         return [count, ratio];
-	}
+    }
 
 </script>
 

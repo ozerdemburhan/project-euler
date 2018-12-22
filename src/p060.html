@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 60</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 60</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	var primes = [];
-	start();
+    var primes = [];
+    start();
 
-	function start() {
-	    primes = preparePrimes(10000);
+    function start() {
+        primes = preparePrimes(10000);
 
-	    end:
-	    for(var i = 0; i < primes.length-4; i++) {
-	        for(var j = i+1; j < primes.length-3; j++) {
-	            if(!check([i, j])) {
-	                continue;
-				}
+        end:
+        for(var i = 0; i < primes.length-4; i++) {
+            for(var j = i+1; j < primes.length-3; j++) {
+                if(!check([i, j])) {
+                    continue;
+                }
 
-	            for(var k = j+1; k < primes.length-2; k++) {
+                for(var k = j+1; k < primes.length-2; k++) {
                     if(!check([i, k]) || !check([j, k])) {
                         continue;
                     }
@@ -37,9 +37,9 @@
                     for(var l = k+1; l < primes.length-1; l++) {
                         if(!check([i, l] || !check([j, l] || !check([k, l])))) {
                             continue;
-						}
+                        }
 
-	            		for(var m = l+1; m < primes.length; m++) {
+                        for(var m = l+1; m < primes.length; m++) {
                             var arr = [i, j, k, l, m];
                             if(check(arr)) {
                                 var sum = 0;
@@ -56,34 +56,34 @@
                             }
                         }
                     }
-				}
-			}
-		}
-	}
+                }
+            }
+        }
+    }
 
-	function check(arr) {
-	    var ps = [];
-	    for(var i = 0; i < arr.length; i++) {
-	        ps.push(primes[arr[i]]);
-		}
+    function check(arr) {
+        var ps = [];
+        for(var i = 0; i < arr.length; i++) {
+            ps.push(primes[arr[i]]);
+        }
 
-	    for(var i = 0; i < ps.length-1; i++) {
-	        for(var j = i+1; j < ps.length; j++) {
-	            var pij = Number(String(ps[i]) + String(ps[j]));
-	            var pji = Number(String(ps[j]) + String(ps[i]));
+        for(var i = 0; i < ps.length-1; i++) {
+            for(var j = i+1; j < ps.length; j++) {
+                var pij = Number(String(ps[i]) + String(ps[j]));
+                var pji = Number(String(ps[j]) + String(ps[i]));
 
-	            if(!isPrime(primes, pij)) {
-	                return false;
-				}
+                if(!isPrime(primes, pij)) {
+                    return false;
+                }
 
-				if(!isPrime(primes, pji)) {
-				    return false;
-				}
-			}
-		}
+                if(!isPrime(primes, pji)) {
+                    return false;
+                }
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
 </script>
 

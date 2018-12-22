@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 61</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 61</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
@@ -23,64 +23,64 @@
     var hepta = [];
     var octa = [];
 
-	start();
+    start();
 
-	function start() {
-	    prepareArrays();
+    function start() {
+        prepareArrays();
 
-	    var arr1 = [tri, sq, penta, hexa, hepta, octa];
-	    for(var i1 = 0; i1 < arr1.length; i1++) {
-	        var arr2 = arr1.slice().filter(item => (item != arr1[i1]));
-	        for(var i2 = 0; i2 < arr2.length; i2++) {
-	            var arr3 = arr2.slice().filter(item => (item != arr2[i2]));
-	            for(var i3 = 0; i3 < arr3.length; i3++) {
-	                var arr4 = arr3.slice().filter(item => (item != arr3[i3]));
-	                for(var i4 = 0; i4 < arr4.length; i4++) {
-	                    var arr5 = arr4.slice().filter(item => (item != arr4[i4]));
-	                    for(var i5 = 0; i5 < arr5.length; i5++) {
-	                        var arr6 = arr5.slice().filter(item => (item != arr5[i5]));
-	                        var r12 = findCyclics(arr1[i1], arr2[i2]);
-	                        if(r12.length == 0) {
-	                            continue;
-							}
+        var arr1 = [tri, sq, penta, hexa, hepta, octa];
+        for(var i1 = 0; i1 < arr1.length; i1++) {
+            var arr2 = arr1.slice().filter(item => (item != arr1[i1]));
+            for(var i2 = 0; i2 < arr2.length; i2++) {
+                var arr3 = arr2.slice().filter(item => (item != arr2[i2]));
+                for(var i3 = 0; i3 < arr3.length; i3++) {
+                    var arr4 = arr3.slice().filter(item => (item != arr3[i3]));
+                    for(var i4 = 0; i4 < arr4.length; i4++) {
+                        var arr5 = arr4.slice().filter(item => (item != arr4[i4]));
+                        for(var i5 = 0; i5 < arr5.length; i5++) {
+                            var arr6 = arr5.slice().filter(item => (item != arr5[i5]));
+                            var r12 = findCyclics(arr1[i1], arr2[i2]);
+                            if(r12.length == 0) {
+                                continue;
+                            }
 
-	                        var r123 = findCyclics(r12, arr3[i3]);
-	                        if(r123.length == 0) {
-	                            continue;
-							}
+                            var r123 = findCyclics(r12, arr3[i3]);
+                            if(r123.length == 0) {
+                                continue;
+                            }
 
-	                        var r1234 = findCyclics(r123, arr4[i4]);
-	                        if(r1234.length == 0) {
-	                            continue;
-							}
+                            var r1234 = findCyclics(r123, arr4[i4]);
+                            if(r1234.length == 0) {
+                                continue;
+                            }
 
-	                        var r12345 = findCyclics(r1234, arr5[i5]);
-	                        if(r12345.length == 0) {
-	                            continue;
-							}
+                            var r12345 = findCyclics(r1234, arr5[i5]);
+                            if(r12345.length == 0) {
+                                continue;
+                            }
 
-	                        var r123456 = findCyclics(r12345, arr6[0]);
-	                        if(r123456.length == 0) {
-	                            continue;
-							}
+                            var r123456 = findCyclics(r12345, arr6[0]);
+                            if(r123456.length == 0) {
+                                continue;
+                            }
 
-	                        if(r123456.length > 0) {
-	                            // document.write(i1 + "," + i2 + "," + i3 + "," + i4 + "," + i5 + "<br>");
-	                            for(var i = 0; i < r123456.length; i++) {
+                            if(r123456.length > 0) {
+                                // document.write(i1 + "," + i2 + "," + i3 + "," + i4 + "," + i5 + "<br>");
+                                for(var i = 0; i < r123456.length; i++) {
                                     var sum = 0;
                                     for(var j = 0; j < r123456[i].length; j++) {
                                         sum += r123456[i][j];
-									}
+                                    }
 
-	                                document.write(r123456[i] + ", sum: " + sum + "<br>");
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+                                    document.write(r123456[i] + ", sum: " + sum + "<br>");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     function findCyclics(arr1, arr2) {
         var arr = [];
@@ -88,15 +88,15 @@
             var a = arr1[i][arr1[i].length - 1]
 
             for(var j = 0; j < arr2.length; j++) {
-				var check = checkCyclic(a, arr2[j][0]);
-				if(arr1[i].length == 5) {
-				    check = check && checkCyclic(arr2[j][0], arr1[i][0]);
-				}
-				if(check) {
-				    var item = arr1[i].slice();
-				    item.push(arr2[j][0]);
-				    arr.push(item);
-				}
+                var check = checkCyclic(a, arr2[j][0]);
+                if(arr1[i].length == 5) {
+                    check = check && checkCyclic(arr2[j][0], arr1[i][0]);
+                }
+                if(check) {
+                    var item = arr1[i].slice();
+                    item.push(arr2[j][0]);
+                    arr.push(item);
+                }
             }
         }
 
@@ -104,16 +104,16 @@
     }
 
 
-	function checkCyclic(a, b) {
-	    if(a == b) {
-	        return false;
-		}
+    function checkCyclic(a, b) {
+        if(a == b) {
+            return false;
+        }
 
         var cyclic = (String(a).substr(-2) == String(b).substr(0, 2));
         return cyclic;
-	}
+    }
 
-	function prepareArrays() {
+    function prepareArrays() {
         var n = 1;
         var check = true;
 
@@ -126,11 +126,11 @@
             var octaValue = n*(3*n-2);
 
             tri.push([triValue]);
-			sq.push([sqValue]);
-			penta.push([pentaValue]);
-			hexa.push([hexaValue]);
-			hepta.push([heptaValue]);
-			octa.push([octaValue]);
+            sq.push([sqValue]);
+            penta.push([pentaValue]);
+            hexa.push([hexaValue]);
+            hepta.push([heptaValue]);
+            octa.push([octaValue]);
 
             var value = Math.min(triValue, sqValue, pentaValue, hexaValue, heptaValue, octaValue);
 
@@ -138,7 +138,7 @@
                 break;
             }
 
-			n++;
+            n++;
         }
 
         tri = filter(tri);
@@ -154,16 +154,16 @@
         // document.write("hexa: " + (hexa) + "<br>");
         // document.write("hepta: " + (hepta) + "<br>");
         // document.write("octa: " + (octa) + "<br>");
-	}
+    }
 
-	function filter(arr) {
-	    var array = arr.filter(function(item) {
-	        var check = ((item[0] >= 1000) && (item[0] < 10000));
-	        return check;
-		});
+    function filter(arr) {
+        var array = arr.filter(function(item) {
+            var check = ((item[0] >= 1000) && (item[0] < 10000));
+            return check;
+        });
 
-	    return array;
-	}
+        return array;
+    }
 
 </script>
 

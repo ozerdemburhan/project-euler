@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 57</title>
-	<meta charset="utf-8">
+    <script src="helper.js"></script>
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 57</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-	    var count = 0;
-	    var term = ["1", "1"];
+    function start() {
+        var count = 0;
+        var term = ["1", "1"];
 
-	    for(var i = 1; i <= 1000; i++) {
-	        term = nextTerm(term);
-	        if(String(term[0]).length > String(term[1]).length) {
-	            count++;
-			}
-		}
+        for(var i = 1; i <= 1000; i++) {
+            term = nextTerm(term);
+            if(String(term[0]).length > String(term[1]).length) {
+                count++;
+            }
+        }
 
-		document.write("count: " + (count) + "<br>");
-	}
+        document.write("count: " + (count) + "<br>");
+    }
 
-	function nextTerm(term) {
-	    var one = ["1", "1"];
-	    var t1 = rsum(one, term);
-	    var t = [t1[1], t1[0]];
-	    return rsum(one, t);
-	}
+    function nextTerm(term) {
+        var one = ["1", "1"];
+        var t1 = rsum(one, term);
+        var t = [t1[1], t1[0]];
+        return rsum(one, t);
+    }
 
-	function rsum(a, b) {
-	    var n1 = a[0], d1 = a[1];
-	    var n2 = b[0], d2 = b[1];
-	    var t1 = bigMul(n1, d2);
-	    var t2 = bigMul(n2, d1);
-	    var n = bigSum(t1, t2);
-	    var d = bigMul(d1, d2);
-	    return [n, d];
-	}
+    function rsum(a, b) {
+        var n1 = a[0], d1 = a[1];
+        var n2 = b[0], d2 = b[1];
+        var t1 = bigMul(n1, d2);
+        var t2 = bigMul(n2, d1);
+        var n = bigSum(t1, t2);
+        var d = bigMul(d1, d2);
+        return [n, d];
+    }
 
 </script>
 

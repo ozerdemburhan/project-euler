@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <head>
-	<style type="text/css">
-		body {
-			font-family: monospace;
-			font-size: 16px;
-		}
-		
-	</style>
-	<title>Problem 12</title>
-	<meta charset="utf-8">
+    <style type="text/css">
+        body {
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+    </style>
+    <title>Problem 12</title>
+    <meta charset="utf-8">
 </head>
 
 
@@ -16,58 +16,58 @@
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-		var n = 1;
-		var sum = 1;
-		var tr = findDivisors(n);
-		
-		while(getDivisorsCount(tr) < 500) {
-			n++;
-			sum += n;
-			tr = findDivisors(sum);
-		}
+    function start() {
+        var n = 1;
+        var sum = 1;
+        var tr = findDivisors(n);
 
-		log("n", sum);
-		var count = getDivisorsCount(findDivisors(sum));
-		log("count", count);
-		log("divisors", JSON.stringify(tr));
-	}
+        while(getDivisorsCount(tr) < 500) {
+            n++;
+            sum += n;
+            tr = findDivisors(sum);
+        }
 
-	function findDivisors(n) {
-		var divisors = {};
+        log("n", sum);
+        var count = getDivisorsCount(findDivisors(sum));
+        log("count", count);
+        log("divisors", JSON.stringify(tr));
+    }
 
-		for(var i = 2; i <= n; i++) {
-			if(n % i == 0) {
-				var value = divisors[i];
+    function findDivisors(n) {
+        var divisors = {};
 
-				if(!value) {
-					value = 0;
-				}
+        for(var i = 2; i <= n; i++) {
+            if(n % i == 0) {
+                var value = divisors[i];
 
-				divisors[i] = ++value;
-				n /= i;
-				i--;
-			}
-		}
+                if(!value) {
+                    value = 0;
+                }
 
-		return divisors;
-	}
+                divisors[i] = ++value;
+                n /= i;
+                i--;
+            }
+        }
 
-	function getDivisorsCount(obj) {
-		var count = 1;
+        return divisors;
+    }
 
-		for(var i in obj) {
-			count *= obj[i] + 1;
-		}
+    function getDivisorsCount(obj) {
+        var count = 1;
 
-		return count;
-	}
+        for(var i in obj) {
+            count *= obj[i] + 1;
+        }
 
-	function log(text, value) {
-		document.write(text + ": " + value + "<br>");
-	}
+        return count;
+    }
+
+    function log(text, value) {
+        document.write(text + ": " + value + "<br>");
+    }
 
 </script>
 
