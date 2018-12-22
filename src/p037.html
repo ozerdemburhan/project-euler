@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 37</title>
 	<meta charset="utf-8">
 </head>
 
@@ -17,8 +17,8 @@
 
 <script>
 	var primes = [];
-	start();
 
+	start();
 
 	function start() {
 		primes = preparePrimes(100000);
@@ -44,7 +44,7 @@
 	function checkSerie(s) {
 		var prime = true;
 		for(var i = 0; i < s.length; i++) {
-			prime = prime && isPrime(s[i]);
+			prime = prime && isPrime(primes, s[i]);
 		}
 
 		return prime;
@@ -64,24 +64,6 @@
 
 		return result;
 	}
-
-
-	function isPrime(n) {
-		if(n < 2) {
-			return false;
-		}
-
-		var sqrt = Math.floor(Math.sqrt(n));
-		var prime = true;
-
-		for(var i = 0; primes[i] <= sqrt; i++) {
-			prime = prime && (n % primes[i] != 0);
-		}
-
-		return prime;
-	}
-
-
 
 </script>
 

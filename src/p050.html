@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 50</title>
 	<meta charset="utf-8">
 </head>
 
@@ -21,8 +21,6 @@
 
 	function start() {
 	    primes = preparePrimes(1000000);
-	    document.write("primes.length: " + (primes.length) + "<br>");
-
 	    var k = 1000;
 	    var maxi = 0;
 	    var maxj = 0;
@@ -50,11 +48,7 @@
 			}
 		}
 
-        document.write(maxsum + "-" + (maxj - maxi + 1) + ": ");
-        for(var l = maxi; l <= maxj; l++) {
-            document.write(primes[l] + " ");
-        }
-        document.write("<br>");
+        document.write(maxsum + "-" + (maxj - maxi + 1) + ":<br>");
     }
 
 

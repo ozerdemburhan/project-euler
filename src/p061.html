@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 61</title>
 	<meta charset="utf-8">
 </head>
 
@@ -65,7 +65,7 @@
 							}
 
 	                        if(r123456.length > 0) {
-	                            document.write(i1 + "," + i2 + "," + i3 + "," + i4 + "," + i5 + "<br>");
+	                            // document.write(i1 + "," + i2 + "," + i3 + "," + i4 + "," + i5 + "<br>");
 	                            for(var i = 0; i < r123456.length; i++) {
                                     var sum = 0;
                                     for(var j = 0; j < r123456[i].length; j++) {
@@ -74,7 +74,6 @@
 
 	                                document.write(r123456[i] + ", sum: " + sum + "<br>");
 								}
-								// break;
 							}
 						}
 					}
@@ -100,11 +99,6 @@
 				}
             }
         }
-
-        // for(var i = 0; i < arr.length; i++) {
-        //     document.write(arr[i] + "<br>");
-        // }
-        // document.write("<br>");
 
         return arr;
     }
@@ -154,18 +148,17 @@
         hepta = filter(hepta);
         octa = filter(octa);
 
-        document.write("tri: " + (tri) + "<br>");
-        document.write("sq: " + (sq) + "<br>");
-        document.write("penta: " + (penta) + "<br>");
-        document.write("hexa: " + (hexa) + "<br>");
-        document.write("hepta: " + (hepta) + "<br>");
-        document.write("octa: " + (octa) + "<br>");
+        // document.write("tri: " + (tri) + "<br>");
+        // document.write("sq: " + (sq) + "<br>");
+        // document.write("penta: " + (penta) + "<br>");
+        // document.write("hexa: " + (hexa) + "<br>");
+        // document.write("hepta: " + (hepta) + "<br>");
+        // document.write("octa: " + (octa) + "<br>");
 	}
 
 	function filter(arr) {
 	    var array = arr.filter(function(item) {
 	        var check = ((item[0] >= 1000) && (item[0] < 10000));
-	        // check = check && (String(item[0]).substr(2, 1) != "0");
 	        return check;
 		});
 

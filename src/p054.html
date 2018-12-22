@@ -9,7 +9,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 54</title>
 	<meta charset="utf-8">
 </head>
 
@@ -19,47 +19,6 @@
 <script>
 
 	start();
-
-	function start1() {
-	    var length = HANDS.length;
-	    document.write("length: " + (length) + "<br>");
-        for(var i = 0; i < HANDS.length; i++) {
-            var s = HANDS[i];
-            var hands = getHands(s);
-            var hand1 = hands[0];
-            var hand2 = hands[1];
-
-            var keys1 = Object.keys(hand1["values"]);
-            var keys2 = Object.keys(hand2["values"]);
-            sortValues(keys1);
-            sortValues(keys2);
-
-            var arr = ["2", "3", "4", "5"];
-            var check1 = true;
-            var check2 = true;
-            for(var j = 0; j < arr.length; j++) {
-                check1 = check1 && keys1.includes(arr[j]);
-                check2 = check2 && keys2.includes(arr[j]);
-			}
-
-			if(check1 || check2) {
-                document.write(s + "<br>");
-			}
-
-
-            // if(keys1[keys1.length - 1] == "A") {
-            //     if(keys1.length == 5) {
-            //         document.write(s + "<br>");
-            //     }
-			// }
-			//
-            // if(keys2[keys2.length - 1] == "A") {
-            //     if(keys2.length == 5) {
-            //         document.write(s + "<br>");
-            //     }
-			// }
-        }
-	}
 
 	function start() {
 	    var player1Wins = 0;
@@ -71,13 +30,7 @@
 	        var hand1 = hands[0];
 	        var hand2 = hands[1];
 
-	        // document.write("hand1: " + JSON.stringify(hand1) + "<br>");
-	        // document.write("hand2: " + JSON.stringify(hand2) + "<br>");
-
-			document.write(s + "<br>");
 	        if(compare(hand1, hand2)) {
-	            document.write("hand1: " + JSON.stringify(hand1) + "<br>");
-				document.write("" + (i + 1) + "<br>");
 	            player1Wins++;
             }
 		}
@@ -88,9 +41,9 @@
 	function checkResult(c, text) {
         if(c != NO_WINNER) {
             if(c == PLAYER1_WINS) {
-                document.write("player1 has " + text + "<br>");
+                // document.write("player1 has " + text + "<br>");
             } else {
-                document.write("player2 has " + text + "<br>");
+                // document.write("player2 has " + text + "<br>");
             }
 		}
 	}

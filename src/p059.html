@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 59</title>
 	<meta charset="utf-8">
 </head>
 
@@ -38,10 +38,12 @@
 	                    message += String.fromCharCode(ciphers[l] ^ arr[l % 3]);
 					}
 
+					// by using mot common english words randomly
+					// ref https://en.wikipedia.org/wiki/Most_common_words_in_English
 					if(message.toLowerCase().indexOf("right") != -1) {
 					    document.write(message + "<br>");
 					    sum(message);
-					    document.write("arr: " + (arr) + "<br>");
+					    // document.write("arr: " + (arr) + "<br>");
                         break end;
                     }
 				}

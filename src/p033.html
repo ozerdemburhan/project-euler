@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 33</title>
 	<meta charset="utf-8">
 </head>
 
@@ -19,13 +19,20 @@
 	start();
 
 	function start() {
+	    var n = "1";
+	    var d = "1";
+
 		for(var i = 10; i < 99; i++) {
 			for(var j = i+1; j < 100; j++) {
 				if(control(i, j)) {
 					document.write(i + "/" + j + "<br>");
+					n = bigMul(n, String(i));
+					d = bigMul(d, String(j));
 				}
 			}
 		}
+
+        document.write(d + "/" + n + "<br>");
 	}
 
 	function control(i, j) {

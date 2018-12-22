@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 44</title>
 	<meta charset="utf-8">
 </head>
 
@@ -27,8 +27,6 @@
                 var sum = pn + pnk;
 
 				if(checkPentagonal(sum)) {
-                    // document.write("P" + n + ": " + pn + ", P" + (n+k) + ": " + pnk + ", sum: " + sum + ", D: " + diff + "<br>");
-
                     if(checkPentagonal(diff)) {
                         document.write("P" + n + ": " + pn + ", P" + (n+k) + ": " + pnk + ", sum: " + sum + ", D: " + diff + "<br>");
                     }
@@ -50,16 +48,6 @@
 	    check = check || ((n2 > 0) && (n2 == Math.floor(n2)));
 
 	    return check;
-	}
-
-	function generatePentagonals(n) {
-	    var ps = [];
-		for(var i = 1; i <= n; i++) {
-		    var p = i * (3 * i - 1) / 2;
-		    ps.push(p);
-		}
-
-		return ps;
 	}
 
 </script>

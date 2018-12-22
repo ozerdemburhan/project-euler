@@ -169,10 +169,15 @@ function isPrime(primes, n) {
     return prime;
 }
 
-function isPandigital(n, start) {
+function isPandigital(n, start, end) {
+	var s = String(n);
+	if(s.length != end-start+1) {
+		return false;
+	}
+
     var pd = true;
-    for(var i = start; i < start + n.length; i++) {
-        pd = pd && n.includes(String(i));
+    for(var i = start; i < end + 1; i++) {
+        pd = pd && s.includes(String(i));
     }
 
     return pd;
