@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 29</title>
 	<meta charset="utf-8">
 </head>
 
@@ -29,15 +29,9 @@
 			}
 		}
 
-		log("result", JSON.stringify(set));
+		// log("result", JSON.stringify(set));
 
-		var count = 0;
-		for(var key in set) {
-			if(set.hasOwnProperty(key)) {
-				count++;
-			}
-		}
-
+		var count = getObjectSize(set);
 		log("count", count);
 	}
 

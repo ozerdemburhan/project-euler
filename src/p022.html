@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 22</title>
 	<meta charset="utf-8">
 </head>
 
@@ -25,10 +25,8 @@
 		document.write(JSON.stringify(letters) + "<br>");
 
 		log("names", names.length);
-		var sorted = sort();
+		var sorted = names.slice().sort();
 		log("sorted", sorted.length);
-
-
 
 		var sum = "0";
 		for(var index = 0; index < sorted.length; index++) {
@@ -49,27 +47,6 @@
 		}
 
 		return sum;
-	}
-
-	function sort() {
-		var sorted = [];
-
-		while(names.length > 0) {
-			var min = names[0];
-			var index = 0;
-
-			for(var i = 1; i < names.length; i++) {
-				if(min > names[i]) {
-					min = names[i];
-					index = i;
-				}
-			}
-
-			sorted.push(min);
-			names.splice(index, 1);
-		}		
-
-		return sorted;
 	}
 
 	function prepareLetters() {

@@ -8,7 +8,7 @@
 		}
 		
 	</style>
-	<title>Test</title>	
+	<title>Problem 26</title>
 	<meta charset="utf-8">
 </head>
 
@@ -16,19 +16,11 @@
 </body>
 
 <script>
-	var primes = [];
-
 	start();
 
 	function start() {
-		for(var i = 2; i < 1000; i++) {
-			if(isPrime(i)) {
-				primes.push(i);
-			}
-		}
-
-		log("primes", primes);
-		log("count", primes.length);
+		var primes = preparePrimes(1000);
+		var imax = 0, jmax = 0;
 
 		for(var i = 0; i < primes.length; i++) {
 			var n = "";
@@ -39,29 +31,17 @@
 				var remain = longMod(n, String(primes[i]));
 
 				if(remain == "0") {
-					document.write("n: " + primes[i] + ", j: " + j + "<br>");
+				    if(jmax < j) {
+				        imax = i;
+				        jmax = j;
+					}
 					break;
 				}
 			}
 		}
 
+		document.write("jmax: " + (jmax) + "<br>");
 	}
-
-
-	function isPrime(n) {
-		var prime = true;
-		var sqrt = Math.floor(Math.sqrt(n));
-
-		for(var i = 0; i < primes.length; i++) {
-			if(primes[i] > sqrt) {
-				return prime;
-			}
-
-			prime &= (n % primes[i] != 0);
-		}
-
-		return prime;
-	}	
 
 	function longMod(n, d) {
 		var result = "";
