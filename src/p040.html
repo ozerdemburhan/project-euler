@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+	    var number = "";
+	    var d = 0;
+
+	    while(number.length < 1000000) {
+	        number = number + String(++d);
+		}
+
+		log("length", number.length);
+
+		var ps = [10, 100, 1000, 10000, 100000, 1000000];
+	    var m = 1;
+	    for(var i = 0; i < ps.length; i++) {
+	        var term = Number(number.charAt(ps[i] - 1));
+	        log("term", term);
+	        m *= term;
+		}
+
+		log("m", m);
+	}
+
+</script>
+
+
+</html>

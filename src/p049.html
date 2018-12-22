@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	var primes = [];
+	start();
+
+	function start() {
+	    primes = preparePrimes(10000);
+
+	    // for(var n = 1000; n < 10000; n++) {
+	    //     var arr = filterPermutations(n);
+		// }
+
+		// var p = getPermutations(1487);
+		// filterPermutations(p);
+		// var result = sameDiff(p);
+		// document.write("result: " + JSON.stringify(result) + "<br>");
+		var res = {};
+
+		for(var i = 1000; i < 10000; i++) {
+		    if(hasSameDigit(i)) {
+		        continue;
+			}
+
+			if(!isPrime(primes, i)) {
+			    continue;
+			}
+
+		    var p = getPermutations(i);
+		    filterPermutations(p);
+		    if(p.length < 3) {
+		        continue;
+			}
+
+		    var result = sameDiff(p);
+		    if(getObjectSize(result) == 0) {
+		        continue;
+			}
+
+			res[i] = result;
+
+		}
+
+		var r = filterResult(res);
+		for(var n in r) {
+		    document.write("n: " + n + " " + JSON.stringify(r[n]) + "<br>");
+		}
+	}
+
+	function filterResult(res) {
+	    var r = {};
+
+	    for(var n in res) {
+	        var arr = [];
+	        var s = String(n);
+	        for(var i = 0; i < s.length; i++) {
+	            arr.push(s.substr(i, 1));
+			}
+
+			arr.sort();
+	        var key = "";
+	        for(var j = 0; j < arr.length; j++) {
+	            key += arr[j];
+			}
+
+			r[key] = res[n];
+		}
+
+		return r;
+	}
+
+	function hasSameDigit(n) {
+	    var set = {};
+	    var s = String(n);
+	    for(var i = 0; i < s.length; i++) {
+	        var k = Number(s.substr(i, 1));
+	        if(set[k]) {
+	            return true;
+			}
+			set[k] = 1;
+		}
+
+		return false;
+	}
+
+	function sameDiff(p) {
+	    p.sort();
+		var set = {};
+
+		for(var i = 0; i < p.length - 1; i++) {
+		    for(var j = i+1; j < p.length; j++) {
+		        var diff = Number(p[j]) - Number(p[i]);
+		        var count = set[diff];
+		        if(!count) {
+		            count = 0;
+				}
+				set[diff] = count + 1;
+			}
+		}
+
+		for(var key in set) {
+		    if(set[key] < 2) {
+		        delete set[key];
+			}
+		}
+
+		return set;
+	}
+
+	function filterPermutations(p) {
+	    var length = p.length;
+	    for(var i = length - 1; i >= 0; i--) {
+	        if(p[i].startsWith("0")) {
+	            p.splice(i, 1);
+	            continue;
+			}
+
+	        if(!isPrime(primes, Number(p[i]))) {
+	            p.splice(i, 1);
+			}
+		}
+
+		return p;
+	}
+
+	function getPermutations(n) {
+	    var p = [];
+	    var arr = [];
+	    var s = String(n);
+
+	    for(var i = 0; i < s.length; i++) {
+	        arr.push(s.substr(i, 1));
+		}
+
+		for(var p1 = 0; p1 < arr.length; p1++) {
+		    var t1 = arr[p1];
+		    var arr1 = arr.slice();
+		    arr1.splice(p1, 1);
+
+		    for(var p2 = 0; p2 < arr1.length; p2++) {
+		        var t2 = arr1[p2];
+                var arr2 = arr1.slice();
+                arr2.splice(p2, 1);
+
+		        for(var p3 = 0; p3 < arr2.length; p3++) {
+		            var t3 = arr2[p3];
+                    var arr3 = arr2.slice();
+                    arr3.splice(p3, 1);
+
+		            for(var p4 = 0; p4 < arr3.length; p4++) {
+		                var t4 = arr3[p4];
+						var term = t1 + t2 + t3 + t4;
+						if(p.indexOf(term) == -1) {
+                            p.push(term);
+                        }
+					}
+				}
+			}
+		}
+
+		return p;
+	}
+
+</script>
+
+
+</html>

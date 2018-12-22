@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+		var n = 0;
+		var length = 0;
+
+		for(var i = 1; i < 1000000; i++) {
+			arr = collatz(i);
+			if(length < arr.length) {
+				n = i;
+				length = arr.length;
+			}
+		}
+
+		log("n", n);
+		log("length", length);
+	}
+
+	function collatz(n) {
+		var arr = [];
+		arr.push(n);
+
+		while(n > 1) {
+			if(n % 2 == 0) {
+				n /= 2;
+			} else {
+				n = 3 * n + 1;
+			}
+
+			arr.push(n);
+		}
+
+		return arr;
+	}
+
+	function log(text, value) {
+		document.write(text + ": " + value + "<br>");
+	}
+
+</script>
+
+
+
+</html>

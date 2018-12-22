@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+	    for(var n = 286; n < 100000; n++) {
+	        var t = T(n);
+	        if(check(t, n)) {
+	            document.write("n: " + n + ", t: " + t + "<br>");
+	            break;
+			}
+		}
+	}
+
+	function check(t, n) {
+	    return checkPentagonal(t, n) && checkHexagonal(t, n);
+	}
+
+	function checkHexagonal(t, n) {
+        for(var i = 0; i < n; i++) {
+            var h = H(i);
+            if(h == t) {
+                return true;
+            }
+        }
+
+        return false;
+	}
+
+	function checkPentagonal(t, n) {
+        for(var i = 0; i < n; i++) {
+            var p = P(i);
+            if(p == t) {
+                return true;
+            }
+        }
+
+        return false;
+	}
+
+	function T(n) {
+	    return n*(n+1)/2;
+	}
+
+	function P(n) {
+	    return n*(3*n-1)/2;
+	}
+
+	function H(n) {
+	    return n*(2*n-1);
+	}
+
+	// function checkPentagonal(p) {
+	//     var d = 1 + 4*3*2*p;
+	//     var n1 = (1 + Math.sqrt(d)) / 6;
+	//     var n2 = (1 - Math.sqrt(d)) / 6;
+	//
+	//     var check = (n1 > 0) && (n1 == Math.floor(n1));
+	//     check = check || ((n2 > 0) && (n2 == Math.floor(n2)));
+	//
+	//     return check;
+	// }
+
+</script>
+
+
+</html>

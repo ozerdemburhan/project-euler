@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+
+<body>
+</body>
+
+<script>
+	start();
+	
+	function start() {
+		var n = new Number("600851475143");
+		factor(n);
+	}
+
+	function factor(n) {
+		var sqrt = Math.floor(Math.sqrt(n));
+		if(sqrt % 2 == 0) {
+			sqrt++;
+		}
+
+//		document.write("n: " + n + "<br>");
+//		document.write("sqrt: " + sqrt + "<br>");
+
+		for(var i = sqrt; i >= 2; i -= 2) {
+			if(n % i == 0) {
+				if(isPrime(i)) {
+					document.write("prime: " + i + "<br>");
+				} else {
+					factor(i);				
+				}
+
+				gf = n / i;
+				if(isPrime(gf)) {
+					document.write("prime: " + gf + "<br>");
+				} else {
+					factor(gf)
+				}
+			}
+		}		
+	}
+
+	function isPrime(n) {
+		var sqrt = Math.floor(Math.sqrt(n));
+		if(sqrt % 2 == 0) {
+			sqrt++;
+		}
+
+		var prime = true;
+
+		for(var i = sqrt; i >= 2; i -= 2) {
+			if(n % i == 0) {
+				prime = false;
+			}
+		}				
+
+		return prime;
+	}
+
+
+</script>
+
+
+
+</html>

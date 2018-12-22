@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	var primes = [];
+	start();
+
+	function start() {
+	    primes = preparePrimes(32000);
+	    document.write("primes.length: " + (primes.length) + "<br>");
+
+	    var start = 1000000001;
+
+	    for(var i = start; i >= 0; i -= 2) {
+	        if(isPandigital(i)) {
+	            if(isPrime(primes, i)) {
+	                document.write("i: " + (i) + "<br>");
+	                break;
+				}
+			}
+		}
+	}
+
+</script>
+
+
+</html>

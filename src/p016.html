@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+		var s = "1";
+
+		for(var i = 0; i < 1000; i++) {
+			s = singleMul(s, "2");
+		}
+
+		var sum = 0;
+
+		for(var i = 0; i < s.length; i++) {
+			sum += Number(s.substr(i, 1));
+		}
+
+		log("sum", sum);
+	}
+
+	function singleMul(s1, s2) {
+		var p2 = Number(s2);
+		var borrow = 0;
+		var result = "";
+
+		for(var i = s1.length - 1; i >= 0; i--) {
+			var p1 = Number(s1.substr(i, 1));
+			var mul = borrow + p1 * p2;
+			borrow = Math.floor(mul / 10);
+			var r = mul % 10;
+			result = r + result;
+		}
+
+		if(borrow > 0) {
+			result = String(borrow) + result;
+		}
+
+		return result;
+	}
+
+
+	function log(text, value) {
+		document.write(text + ": " + value + "<br>");
+	}
+
+</script>
+
+
+
+</html>

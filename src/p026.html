@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	var primes = [];
+
+	start();
+
+	function start() {
+		for(var i = 2; i < 1000; i++) {
+			if(isPrime(i)) {
+				primes.push(i);
+			}
+		}
+
+		log("primes", primes);
+		log("count", primes.length);
+
+		for(var i = 0; i < primes.length; i++) {
+			var n = "";
+
+			for(var j = 1; j < 1000; j++) {
+				n = "9".repeat(j);
+
+				var remain = longMod(n, String(primes[i]));
+
+				if(remain == "0") {
+					document.write("n: " + primes[i] + ", j: " + j + "<br>");
+					break;
+				}
+			}
+		}
+
+	}
+
+
+	function isPrime(n) {
+		var prime = true;
+		var sqrt = Math.floor(Math.sqrt(n));
+
+		for(var i = 0; i < primes.length; i++) {
+			if(primes[i] > sqrt) {
+				return prime;
+			}
+
+			prime &= (n % primes[i] != 0);
+		}
+
+		return prime;
+	}	
+
+	function longMod(n, d) {
+		var result = "";
+
+		var part = Number(n.substr(0, d.length));
+		n = n.substr(d.length);			
+		while(n.length > 0) {	
+			var nd = Number(d);
+			var div = Math.floor(part / nd);
+			var remain = part % nd;
+			result = result + String(div);
+
+			if(remain != "0") {
+				part = remain + n.substr(0, 1);		
+				n = n.substr(1);
+			} else {
+				part = n.substr(0, d.length);
+				n = n.substr(d.length);
+			}
+		}
+
+		return Number(remain);
+	}
+
+
+
+</script>
+
+
+
+</html>

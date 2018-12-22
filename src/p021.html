@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+		var set = {};
+		var sum = 0;
+
+		for(var i = 1; i < 10000; i++) {
+			var check = (d(d(i)) == i) && (d(i) != i);
+			if(check) {
+				set[i] = i;
+				set[d(i)] = d(i);
+			}
+		}
+
+		for(var n in set) {
+			sum += Number(n);
+		}
+
+		log("sum", sum);
+		log("set", JSON.stringify(set));
+	}
+
+
+	function d(n) {
+		var sum = 0;
+
+		for(var i = 1; i < n; i++) {
+			if(n % i == 0) {
+				sum += i;
+			}
+		}
+
+		return sum;
+	}
+
+
+</script>
+
+
+
+</html>

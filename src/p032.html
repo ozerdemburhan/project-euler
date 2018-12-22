@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+		var sum14 = search(1, 4);
+		var sum23 = search(2, 3);
+
+		var sum = sum14 + sum23;
+		log("sum", sum);
+	}
+
+	function search(mcn, mln) {
+		var result = 0;
+		var mcLower = Math.pow(10, mcn - 1);
+		var mcUpper = mcLower * 10;
+		var mlLower = Math.pow(10, mln - 1);
+		var mlUpper = mlLower * 10;
+
+		for(var mc = mcLower; mc < mcUpper; mc++) {
+			for(var ml = mlLower; ml < mlUpper; ml++) {
+				var p = mc * ml;
+
+				if(panDigital(mc, ml, p)) {
+					document.write(mc + " x " + ml + " = " + p + "<br>");
+					result += p;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	function panDigital(mc, ml, p) {
+		var s = String(mc) + String(ml) + String(p);
+		if(s.length != 9) {
+			return false;
+		}
+
+		var check = true;
+		for(var i = 1; i <= 9; i++) {
+			check &= s.includes(String(i));
+		}
+
+		return check;
+	}
+
+</script>
+
+
+</html>

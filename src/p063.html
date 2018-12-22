@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+	    var sum = 0
+	    for(var i = 1; i < 10; i++) {
+	        var count = process(i);
+	        document.write("i: " + i + ", count: " + count + "<br>");
+	        sum += process(i);
+		}
+
+		document.write("sum: " + (sum) + "<br>");
+	}
+
+	function process(n) {
+	    var count = 0;
+	    var p = 1;
+
+	    while(true) {
+	        var N = Math.pow(n, p);
+	        var digits = Math.trunc(Math.log(N)/Math.LN10) + 1;
+	        if(digits == p) {
+	            count++;
+			} else if(digits < p) {
+	            break;
+			}
+
+			p++;
+		}
+
+		return count;
+	}
+
+</script>
+
+
+</html>

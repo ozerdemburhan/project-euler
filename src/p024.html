@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+		var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+		log("arr", arr);
+
+		var count = 1;
+
+		while(arr != null) {
+			arr = nextPermutation(arr);	
+			count++;
+
+			if(count == 1000000) {
+				break;
+			}
+		}
+
+		log("arr", arr);
+		log("count", count);
+	}
+
+	function nextPermutation(arr) {
+		var firstIndex = getFirstIndex(arr);
+
+		if(firstIndex == -1) {
+			return null;
+		}
+
+		var ceilIndex = getCeilIndex(arr, firstIndex);
+		arr = swap(arr, firstIndex, ceilIndex);
+		arr = sort(arr, firstIndex);
+
+		return arr;
+	}
+
+	function sort(arr, firstIndex) {
+		var sarr = arr.splice(firstIndex + 1);
+		sarr.sort(function(a, b) { return a-b });
+
+		for(var i = 0; i < sarr.length; i++) {
+			arr.push(sarr[i]);
+		}
+
+		return arr;
+	}
+
+	function swap(arr, i, j) {
+		temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+
+		return arr;
+	}
+
+
+	function getCeilIndex(arr, firstIndex) {
+		var ceilIndex = -1;
+
+		for(var i = firstIndex + 1; i < arr.length; i++) {
+			if(arr[i] > arr[firstIndex]) {
+				if(ceilIndex < i) {
+					ceilIndex = i;
+				}
+			}
+		}
+
+		return ceilIndex;
+	}
+
+	function getFirstIndex(arr) {
+		var firstIndex = -1;
+
+		for(var i = 0; i < arr.length-1; i++) {
+			if(arr[i] < arr[i+1]) {
+				if(firstIndex < i) {
+					firstIndex = i;
+				}
+			}
+		}
+
+		return firstIndex;
+	}
+
+
+
+
+</script>
+
+
+
+</html>

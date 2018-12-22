@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+	    var count = 0;
+
+	    for(var i = 1; i < 10000; i++) {
+	        var s = String(i);
+	        if(isLychrel(s)) {
+	            document.write(s + "<br>");
+				count++;
+			}
+		}
+
+		document.write("count: " + count + "<br>");
+	}
+
+	function isLychrel(s) {
+	    var count = 0;
+
+        while(count < 50) {
+            var r = reverse(s);
+
+	        s = bigSum(s, r);
+            if(isPalindrome(s)) {
+	            return false;
+			}
+
+			count++;
+		}
+
+		return true;
+	}
+
+</script>
+
+
+</html>

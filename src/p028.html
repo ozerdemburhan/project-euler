@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+		var board = [];
+		var n = 5;
+		prepare(board);
+
+		for(var row = 0; row < board.length; row++) {
+			log("row[" + row + "]", board[row]);
+		}
+
+		fillBoard(board, n);
+	}
+
+	function fillBoard(board, n) {
+		var startRow = (n-1) / 2;
+		var startCol = (n-1) / 2;
+
+		board[startRow][startCol] = 1;
+
+		for(var i = 1; i < startCol; i++) {
+			var edge = 2*i + 1;
+			var half = (edge-1)/2;
+			var rt = 
+
+		}
+	}
+
+	function prepare(board, n) {
+		for(var row = 0; row < n; row++) {
+			var s = [];
+
+			for(var col = 0; col < n; col++) {
+				s.push(0);
+			}
+
+			board.push(s);
+		}
+	}
+
+</script>
+
+
+
+</html>

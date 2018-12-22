@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+
+<body>
+</body>
+
+<script>
+
+	var primes = []
+
+	start();
+
+	function start() {
+		var sum = 0;
+
+		for(var i = 2; i < 2000000; i++) {
+			var check = isprime(i);
+			if(isprime(i)) {
+				sum += i;
+			}
+		}
+
+		log("primes count", primes.length);
+
+		log("sum", sum);
+	}
+
+	function isprime(n) {
+		var prime = true;
+		var sqrt = Math.floor(Math.sqrt(n));
+
+		for(var i = 0; i < primes.length; i++) {
+			if(primes[i] > sqrt) {
+				if(prime) {
+					primes.push(n);
+				}
+				return prime;
+			}
+
+			prime &= (n % primes[i] != 0);
+		}
+
+		if(prime) {
+			primes.push(n);
+		}
+	}
+
+	function log(text, value) {
+		document.write(text + ": " + value + "<br>");
+	}
+
+
+</script>
+
+
+
+</html>

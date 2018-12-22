@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	var primes = [];
+	start();
+
+	function start() {
+	    primes = preparePrimes(100000);
+	    var ratio = 100;
+	    var n = 2;
+	    var count = 0;
+	    var ret;
+	    var edge;
+
+	    while(ratio >= 10) {
+	        ret = getNextRatio(count, n);
+	        count = ret[0];
+            ratio = ret[1];
+
+            edge = 2*n-1;
+            // document.write("edge: " + edge + ", ratio: " + ratio + "<br>");
+            n++;
+        }
+
+        document.write("edge: " + edge + ", ratio: " + ratio + "<br>");
+	}
+
+	function getNextRatio(count, N) {
+        var l = 2*N-1;
+        var l1 = l - 1;
+        var rb = l*l;
+        var lb = rb - l1;
+        var lt = lb - l1;
+        var rt = lt - l1;
+
+        if(isPrime(primes, rb)) {
+            count++;
+        }
+
+        if(isPrime(primes, lb)) {
+            count++;
+        }
+
+        if(isPrime(primes, lt)) {
+            count++;
+        }
+
+        if(isPrime(primes, rt)) {
+            count++;
+        }
+
+        var diagCount = 2*(2*N-1)-1;
+        var ratio = count * 100.0 / diagCount;
+
+        return [count, ratio];
+	}
+
+	function getRatio(N) {
+	    var count = 0;
+
+	    for(var n = 1; n <= N; n++) {
+            var l = 2*n-1;
+            var l1 = l - 1;
+	        var rb = l*l;
+	        var lb = rb - l1;
+	        var lt = lb - l1;
+	        var rt = lt - l1;
+
+	        if(isPrime(primes, rb)) {
+	            count++;
+			}
+
+			if(isPrime(primes, lb)) {
+			    count++;
+			}
+
+			if(isPrime(primes, lt)) {
+			    count++;
+			}
+
+			if(isPrime(primes, rt)) {
+			    count++;
+            }
+		}
+
+		var diagCount = 2*(2*N-1)-1;
+	    return Math.round(count * 100.0 / diagCount);
+	}
+
+</script>
+
+
+</html>

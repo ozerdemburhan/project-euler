@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	/*
+		jan	feb	march	april	may	june	july	august	september	october	november	december
+		31	28	31		30		31	30		31		31		30			31		30			31
+1	*/
+
+	const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+	var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	start();
+
+	function start() {
+		const dtf = [31, 11, 2000];
+		dt = [1, 0, 1901];
+		var count = 0;
+		day = 2;
+
+		while(true) {
+			dt = nextDay(dt);
+
+			day = ++day % 7;
+
+			if((dt[0] == 1) && (day == 0)) {
+				log("dt", dt);
+				count++;		
+			}
+
+			if(equals(dt, dtf)) {
+				break;
+			}
+		}
+
+		log("count", count);
+	}
+
+	function equals(arr1, arr2) {
+		if(arr1 == arr2) {
+			return true;
+		}
+
+		if(arr1.length != arr2.length) {
+			return false;
+		}
+
+		var equal = true;
+		for(var i = 0; i < arr1.length; i++) {
+			equal &= (arr1[i] == arr2[i]);
+		}
+
+		return equal;
+	}
+
+	function nextDay(dt) {
+		var date = dt[0], month = dt[1], year = dt[2];
+
+		if(year % 4 == 0) {
+			monthDays[1] = 29;
+		} else {
+			monthDays[1] = 28;
+		}
+
+		var lastDay = monthDays[month];
+		if(date < lastDay) {
+			date++;
+		} else {
+			date = 1;
+			month++;
+			if(month > 11) {
+				month = 0;
+				year++;
+			}
+		}
+
+		arr = [date, month, year];
+		return arr;
+	}
+
+	function log(text, value) {
+		document.write(text + ": " + value + "<br>");
+	}
+
+</script>
+
+
+
+</html>

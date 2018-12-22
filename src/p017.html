@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+
+	const f20 = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+			 "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+
+ 	const tens = ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+
+	start();
+
+	function start() {
+		var sum = 0;
+
+		for(var i = 1; i <= 1000; i++) {
+			var s = withLetters(i);	
+			s = s.replace(/\s/g, "");
+			sum += s.length;
+			log("s", s);
+		}
+
+		log("length", sum);
+	}
+
+
+	function withLetters(n) {
+		var s = "";
+
+		if(n < 20) {
+			s = f20[n];
+
+		} else {
+			var ten = Math.floor((n % 100) / 10);
+			var one = n % 10;
+			
+			if(n < 100) {
+				s = tens[ten] + " " + f20[one];
+
+			} else if(n < 1000) {
+				var hundred = Math.floor(n / 100);
+				if(n % 100 == 0) {
+					s = f20[hundred] + " hundred";
+				} else {
+					if(n % 100 < 20) {
+						s = f20[hundred] + " hundred and " + f20[n % 100];
+					} else {
+						s = f20[hundred] + " hundred and " + tens[ten] + " " + f20[one];
+					}
+				}
+			} else if(n == 1000) {
+				s = "one thousand";
+			}
+		}
+
+		s = s.replace(/\s/g, "");
+		document.write("n: " + n + ", s: " + s + "<br>");
+
+		return s;
+	}
+
+
+	function log(text, value) {
+		document.write(text + ": " + value + "<br>");
+	}
+
+</script>
+
+
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+	    for(var i = 1000; i < 10000; i++) {
+	        var concat = "";
+
+	        for(var n = 1; n <= 9; n++) {
+	            concat = concat + String(i * n);
+	            // document.write("n: " + n + ", concat: " + concat + "<br>");
+
+	            if(n == 1) {
+	                continue;
+                }
+
+	            if(isPandigital(concat)) {
+	                document.write("i: " + i + ", n: " + n + ", concat: " + concat + "<br>");
+                    break;
+                }
+            }
+        }
+
+	}
+
+</script>
+
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+
+<body>
+</body>
+
+<script>
+
+	start();
+
+	function start() {
+		for(var i = 1; i < 1000; i++) {
+			for(var j = i; j < 1000; j++) {
+				for(var k = j; k < 1000; k++) {
+					var check = (i + j + k == 1000);
+					check &= (i*i + j*j == k*k);
+
+					if(check) {
+						log("abc", (i * j * k));
+					}
+				}
+			}
+		}
+	}
+
+	function log(text, value) {
+		document.write(text + ": " + value + "<br>");
+	}
+
+
+</script>
+
+
+
+</html>

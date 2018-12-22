@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+	<script src="helper.js"></script>
+	<style type="text/css">
+		body {
+			font-family: monospace;
+			font-size: 16px;
+		}
+		
+	</style>
+	<title>Test</title>	
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start1() {
+		var c1 = countPrimes(1, 41);
+		var c2 = countPrimes(-79, 1601);
+
+		log("c1", c1);
+		log("c2", c2);
+	}
+
+	function start() {
+		var primeCount = 0;
+		var maxa = 0;
+		var maxb = 0;
+
+		for(var a = -999; a <= 999; a++) {
+			for(var b = -1000; b <= 1000; b++) {
+				var count = countPrimes(a, b);
+				if(primeCount < count) {
+					primeCount = count;
+					maxa = a;
+					maxb = b;
+				}
+			}
+		}
+
+		log("prime count", primeCount);
+		log("a", maxa);
+		log("b", maxb);
+	}
+
+	function countPrimes(a, b) {
+		var n = 0;
+		var value = n*n + a*n + b;
+
+		while(isPrime(value)) {
+			n++;
+			value = n*n + a*n + b;
+		}
+
+		return n;
+	}
+
+
+	function isPrime(n) {
+		if(n < 2) {
+			return false;
+		}		
+
+		var ubound = Math.floor(n/2);
+
+		for(var i = 2; i <= ubound; i++) {
+			if(n % i == 0) {
+				return false;
+			}
+		}
+
+		return true;
+	}	
+
+</script>
+
+
+
+</html>
