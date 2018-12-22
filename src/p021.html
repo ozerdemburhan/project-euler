@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <head>
-	<script src="helper.js"></script>
-	<link rel="stylesheet" href="main.css">
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
 
-	<title>Problem 21</title>
-	<meta charset="utf-8">
+    <title>Problem 21</title>
+    <meta charset="utf-8">
 </head>
 
 <body>
 </body>
 
 <script>
-	start();
+    start();
 
-	function start() {
-		var set = {};
-		var sum = 0;
+    function start() {
+        var set = {};
+        var sum = 0;
 
-		for(var i = 1; i < 10000; i++) {
-			var check = (d(d(i)) == i) && (d(i) != i);
-			if(check) {
-				set[i] = i;
-				set[d(i)] = d(i);
-			}
-		}
+        for(var i = 1; i < 10000; i++) {
+            var check = (d(d(i)) == i) && (d(i) != i);
+            if(check) {
+                set[i] = i;
+                set[d(i)] = d(i);
+            }
+        }
 
-		for(var n in set) {
-			sum += Number(n);
-		}
+        for(var n in set) {
+            sum += Number(n);
+        }
 
-		log("sum", sum);
-		log("set", JSON.stringify(set));
-	}
+        log("sum", sum);
+        log("set", JSON.stringify(set));
+    }
 
 
-	function d(n) {
-		var sum = 0;
+    function d(n) {
+        var sum = 0;
 
-		for(var i = 1; i < n; i++) {
-			if(n % i == 0) {
-				sum += i;
-			}
-		}
+        for(var i = 1; i < n; i++) {
+            if(n % i == 0) {
+                sum += i;
+            }
+        }
 
-		return sum;
-	}
+        return sum;
+    }
 
 
 </script>
