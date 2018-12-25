@@ -245,6 +245,13 @@ function reverse(s) {
     return s.split("").reverse().join("");
 }
 
+function digitalSum(s) {
+    var sum = 0;
+    for(var i = 0; i < s.length; i++) {
+        sum += Number(s.substr(i, 1));
+    }
+    return sum;
+}
 
 
 function log(text, value) {

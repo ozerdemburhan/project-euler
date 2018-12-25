@@ -11,9 +11,54 @@
 </body>
 
 <script>
+    var ec = [];
     start();
 
     function start() {
+        prepare();
+        var r = iterate(0, 99);
+        var digitSum = digitalSum(r[0]);
+        document.write(r[0] + "/" + r[1] + "<br>");
+        document.write("digitSum: " + (digitSum) + "<br>");
+    }
+
+    function iterate(n, end) {
+        var r = [ec[n], "1"];
+
+        if(n >= end) {
+            return r;
+        }
+
+        var r1 = iterate(n+1, end);
+        r1 = [r1[1], r1[0]];
+        return rsum(r, r1);
+    }
+
+    function prepare() {
+        ec.push("2");
+        var k2 = 2;
+        for(var i = 0; i < 100; i++) {
+            if(i % 3 == 2) {
+                ec[i] = String(k2);
+                k2 += 2;
+            } else {
+                ec.push("1");
+            }
+        }
+
+        // document.write("ec: " + (ec) + "<br>");
+    }
+
+    function rsum(r1, r2) {
+        var n1 = r1[0], d1 = r1[1], n2 = r2[0], d2 = r2[1];
+        var t1 = bigMul(n1, d2);
+        var t2 = bigMul(n2, d1);
+        var n = bigSum(t1, t2);
+        var d = bigMul(d1, d2);
+        var r = [n, d];
+
+        // return simplify(r);
+        return r;
     }
 
 </script>
