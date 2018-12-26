@@ -1,3 +1,7 @@
+String.prototype.replaceAt = function(index, replace) {
+    return this.substr(0, index) + replace + this.substr(index + replace.length);
+}
+
 function bigSum(s1, s2) {
     if(s1.length != s2.length) {
         var length = Math.max(s1.length, s2.length);
@@ -22,6 +26,7 @@ function bigSum(s1, s2) {
 
     return sum;
 }
+
 
 function arraySum(arr) {
     var sum = arr[0];
@@ -252,6 +257,8 @@ function digitalSum(s) {
     }
     return sum;
 }
+
+
 
 
 function log(text, value) {
