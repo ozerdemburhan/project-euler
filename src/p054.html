@@ -25,7 +25,7 @@
             var hand1 = hands[0];
             var hand2 = hands[1];
 
-            if(compare(hand1, hand2)) {
+            if(compareHands(hand1, hand2)) {
                 player1Wins++;
             }
         }
@@ -43,7 +43,7 @@
         }
     }
 
-    function compare(hand1, hand2) {
+    function compareHands(hand1, hand2) {
         var c = compareForStraightFlush(hand1, hand2);
         checkResult(c, "straight flush");
         if(c != NO_WINNER) {

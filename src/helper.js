@@ -258,6 +258,22 @@ function digitalSum(s) {
     return sum;
 }
 
+function compare(s1, s2) {
+    var length = Math.max(s1.length, s2.length);
+    if(s1.length != s2.length) {
+        s1 = "0".repeat(length - s1.length) + s1;
+        s2 = "0".repeat(length - s2.length) + s2;
+    }
+
+    if(s1 > s2) {
+        return 1;
+    } else if(s1 < s2) {
+        return -1;
+    }
+
+    return 0;
+}
+
 
 
 
