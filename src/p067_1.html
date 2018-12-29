@@ -3,7 +3,7 @@
     <script src="helper.js"></script>
     <link rel="stylesheet" href="main.css">
 
-    <title>Problem 67</title>
+    <title>Problem 67_1</title>
     <meta charset="utf-8">
 </head>
 
@@ -12,7 +12,10 @@
 
 <script>
 
-    var arr = [
+    // Problem 67 extension to visualize the max sum path.
+    // This is not a requirement to solve the problem.
+
+    var parr = [
         [59],
         [73,41],
         [52,40,09],
@@ -117,7 +120,28 @@
 
     start();
 
+    function copyArr() {
+        var arr = [];
+        for(var row = 0; row < parr.length; row++) {
+            arr.push([]);
+            for(var col = 0; col < parr[row].length; col++) {
+                arr[row].push(parr[row][col]);
+            }
+        }
+
+        return arr;
+    }
+
     function start() {
+        var arr = copyArr();
+        var paths = [];
+        for(var row = 0; row < arr.length; row++) {
+            paths.push([]);
+            for(var col = 0; col < arr[row].length; col++) {
+                paths[row].push([]);
+            }
+        }
+
         for(var row = 1; row < arr.length; row++) {
             for(var col = 0; col < arr[row].length; col++) {
                 var value = arr[row][col];
@@ -131,20 +155,56 @@
                     v2 = arr[row-1][col-1];
                 }
 
+                if(v1 >= v2) {
+                    paths[row][col] = paths[row-1][col].slice();
+                    paths[row][col].push(col);
+                } else {
+                    paths[row][col] = paths[row-1][col-1].slice();
+                    paths[row][col].push(col-1);
+                }
+
                 arr[row][col] = value + Math.max(v1, v2);
             }
         }
 
         var max = 0;
         var last = arr.length-1;
+        var maxPath;
         for(var i = 0; i < arr[last].length; i++) {
             if(max < arr[last][i]) {
                 max = arr[last][i];
+                maxPath = paths[last][i];
             }
         }
 
+        maxPath.unshift(0);
+
         document.write("max: " + (max) + "<br>");
+        document.write("maxPath: " + (maxPath) + "<br>");
+        document.write("maxPath.length: " + (maxPath.length) + "<br>");
+        print(maxPath);
     }
+
+    function print(path) {
+        for(var row = 0; row < parr.length; row++) {
+            for(var col = 0; col < parr[row].length; col++) {
+               if(col > 0) {
+                   document.write(",");
+               }
+
+               var value = String(parr[row][col]);
+               value = "0".repeat(2 - value.length) + value;
+               if(col == path[row]) {
+                   document.write("<span style='color: red; font-weight: bold;'>" + value + "</span>");
+               } else {
+                   document.write(value);
+               }
+            }
+            document.write("<br>");
+        }
+    }
+
+
 
 </script>
 
