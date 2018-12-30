@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 72</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var primes = preparePrimes(1000);
+        var sum = 0;
+
+        for(var i = 2; i <= 1000000; i++) {
+            sum += phi(primes, i);
+        }
+
+        document.write("sum: " + (sum) + "<br>");
+
+    }
+
+</script>
+
+
+</html>
