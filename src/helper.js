@@ -2,6 +2,18 @@ String.prototype.replaceAt = function(index, replace) {
     return this.substr(0, index) + replace + this.substr(index + replace.length);
 }
 
+String.prototype.count = function(ch) {
+    var c = 0;
+    for(var i = 0; i < this.length-ch.length+1; i++) {
+        if(this.substr(i, ch.length) == ch) {
+            c++;
+        }
+    }
+
+    return c;
+}
+
+
 function bigSum(s1, s2) {
     if(s1.length != s2.length) {
         var length = Math.max(s1.length, s2.length);
@@ -274,6 +286,15 @@ function compare(s1, s2) {
     return 0;
 }
 
+function phi(primes, n) {
+    var set = getPrimeFactors(primes, n);
+    var coprimes = n;
+    for(var key in set) {
+        coprimes *= (1-1/key);
+    }
+
+    return coprimes;
+}
 
 
 
