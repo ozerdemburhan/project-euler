@@ -107,6 +107,10 @@ function factorial(n) {
         f = bigMul(f, String(i));
     }
 
+    while(f.startsWith("0")) {
+        f = f.substr(1);
+    }
+
     return f;
 }
 
