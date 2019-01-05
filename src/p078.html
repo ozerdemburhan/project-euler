@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <script src="MathUtil.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 78</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    // not a good solution it took 10 mins to calculate...
+    // I also used the generating function info from:
+    // https://www.mathblog.dk/project-euler-78-coin-piles/
+
+    var p = ["1"];
+    var K = 6;
+    start();
+
+    function start() {
+        var n = 1;
+
+        while(true) {
+            var i = 0;
+            var pg = 1;
+            p.push("0");
+
+            while(pg <= n) {
+                var sign = (i%4 > 1) ? -1 : 1;
+                if(sign < 0) {
+                    p[n] = bigSubtract(p[n], p[n-pg]);
+                } else {
+                    p[n] = bigSum(p[n], p[n-pg]);
+                }
+
+                i++;
+
+                var t = Math.floor(i/2)+1;
+                var j = (i % 2 === 0) ? t : -t;
+                pg = j*(3*j-1)/2;
+            }
+
+            if(p[n].substr(-K) === "0".repeat(K)) {
+                break;
+            }
+            n++;
+        }
+
+        document.write("n: " + (n) + "<br>");
+        document.write("p[" + n + "]: " + p[n] + "<br>");
+    }
+</script>
+
+
+</html>

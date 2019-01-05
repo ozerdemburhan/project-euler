@@ -15,6 +15,21 @@ String.prototype.count = function(ch) {
 
 
 function bigSum(s1, s2) {
+    var sg1 = (s1.startsWith("-") ? -1 : 1);
+    if(sg1 < 0) {
+        s1 = s1.substring(1);
+    }
+    var sg2 = (s2.startsWith("-") ? -1 : 1);
+    if(sg2 < 0) {
+        s2 = s2.substring(1);
+    }
+
+    if((sg1 < 0) && (sg2 > 0)) {
+        return bigSubtract(s2, s1);
+    } else if((sg1 > 0) && (sg2 < 0)) {
+        return bigSubtract(s1, s2);
+    }
+
     if(s1.length != s2.length) {
         var length = Math.max(s1.length, s2.length);
         s1 = "0".repeat(length - s1.length) + s1;
@@ -36,8 +51,64 @@ function bigSum(s1, s2) {
         sum = borrow + sum;
     }
 
-    return sum;
+    return (sg1*sg2 < 0 ? "-" : "") + trim0(sum);
 }
+
+function bigSubtract(s1, s2) {
+    var sg1 = (s1.startsWith("-") ? -1 : 1);
+    if(sg1 < 0) {
+        s1 = s1.substring(1);
+    }
+    var sg2 = (s2.startsWith("-") ? -1 : 1);
+    if(sg2 < 0) {
+        s2 = s2.substring(1);
+    }
+
+    if(sg1 !== sg2) {
+        return (sg1 < 0 ? "-" : "") + bigSum(s1, s2);
+    }
+
+    var length = Math.max(s1.length, s2.length);
+    if(s1.length != s2.length) {
+        s1 = "0".repeat(length - s1.length) + s1;
+        s2 = "0".repeat(length - s2.length) + s2;
+    }
+
+    var minus = false;
+
+    if(compare(s1, s2) < 0) {
+        var s = s1;
+        s1 = s2;
+        s2 = s;
+        minus = true;
+    }
+
+    var sub = "";
+
+    for(var i = length-1; i >= 0; i--) {
+        var d1 = Number(s1.substr(i, 1));
+        var d2 = Number(s2.substr(i, 1));
+
+        if(d1 < d2) {
+            for(var j = i-1; j >= 0; j--) {
+                var d = Number(s1.substr(j, 1));
+                if(d > 0) {
+                    s1 = s1.replaceAt(j, String(d-1));
+                    d1 += 10;
+                    for(var k = j+1; k < i; k++) {
+                        s1 = s1.replaceAt(k, "9");
+                    }
+                    break;
+                }
+            }
+        }
+
+        sub = String(d1-d2) + sub;
+    }
+
+    return (minus ? "-" : "") + trim0(sub);
+}
+
 
 
 function arraySum(arr) {
@@ -48,6 +119,12 @@ function arraySum(arr) {
     }
 
     return sum;
+}
+
+function trim0(s) {
+    var i;
+    for(i = 0; s.substr(i, 1) === "0"; i++);
+    return s.substring(i);
 }
 
 
