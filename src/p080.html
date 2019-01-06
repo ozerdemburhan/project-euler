@@ -21,7 +21,7 @@
                 continue;
             }
 
-            let s = sqrtGeneric(n, 99);
+            let s = sqrtGeneric(n, 100).replace(".", "").substr(0, 100);
             sum += digitalSum(s);
         }
         document.write("sum: " + (sum) + "<br>");
