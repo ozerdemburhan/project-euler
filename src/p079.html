@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 79</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    var logs = [
+        319, 680, 180, 690, 129, 620, 762, 689, 762, 318,
+        368, 710, 720, 710, 629, 168, 160, 689, 716, 731,
+        736, 729, 316, 729, 729, 710, 769, 290, 719, 680,
+        318, 389, 162, 289, 162, 718, 729, 319, 790, 680,
+        890, 362, 319, 760, 316, 729, 380, 319, 728, 716
+    ];
+
+    start();
+
+    function start() {
+        var set = {};
+        let digits = [];
+        let occur = [];
+
+        for(let i = 0; i < logs.length; i++) {
+            let s = String(logs[i]).split("");
+            let d0 = Number(s[0]);
+            let d1 = Number(s[1]);
+            let d2 = Number(s[2]);
+
+            if(!set[d0]) {
+                set[d0] = [];
+            }
+            if(!set[d1]) {
+                set[d1] = [];
+            }
+            if(!set[d2]) {
+                set[d2] = [];
+            }
+
+            if(set[d0].indexOf(d1) == -1) {
+                set[d0].push(d1);
+            }
+
+            if(set[d0].indexOf(d2) == -1) {
+                set[d0].push(d2);
+            }
+
+            if(set[d1].indexOf(d2) == -1) {
+                set[d1].push(d2);
+            }
+        }
+
+        for(let d in set) {
+            digits.push(d);
+            occur.push(set[d].length);
+        }
+
+        for(let i = 0; i < occur.length-1; i++) {
+            let max = -1, index = -1;
+            for(let j = i; j < occur.length; j++) {
+                if(max < occur[j]) {
+                    max = occur[j];
+                    index = j;
+                }
+            }
+
+            let ti = occur[i];
+            occur[i] = max;
+            occur[index] = ti;
+
+            let to = digits[i];
+            digits[i] = digits[index];
+            digits[index] = to;
+        }
+
+        document.write(digits.join(""));
+    }
+</script>
+
+
+</html>
