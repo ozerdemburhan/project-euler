@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 80</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var sum = 0;
+        for(let n = 0; n < 100; n++) {
+            let root = Math.floor(Math.sqrt(n));
+            if(root == Math.sqrt(n)) {
+                continue;
+            }
+
+            let s = sqrtGeneric(n, 99);
+            sum += digitalSum(s);
+        }
+        document.write("sum: " + (sum) + "<br>");
+    }
+
+</script>
+
+
+</html>

@@ -344,9 +344,10 @@ function reverse(s) {
 }
 
 function digitalSum(s) {
+    let ss = s.replace(".", "");
     var sum = 0;
-    for(var i = 0; i < s.length; i++) {
-        sum += Number(s.substr(i, 1));
+    for(var i = 0; i < ss.length; i++) {
+        sum += Number(ss.substr(i, 1));
     }
     return sum;
 }
@@ -377,6 +378,52 @@ function phi(primes, n) {
     return coprimes;
 }
 
+function sqrtGeneric(n, f) {
+    let result = "";
+    let s0 = String(n);
+    if(s0.length % 2 === 1) {
+        s0 = "0" + s0;
+    }
+    s = s0 + "0".repeat(f*2);
+
+    let p = "";
+    for(let i = 0; i < s.length; i += 2) {
+        if(i == s0.length) {
+            result += ".";
+        }
+        p = p + s.substr(i, 2);
+
+        if(i === 0) {
+            let root = Math.floor(Math.sqrt(Number(p)));
+            result += String(root);
+            let sqr = root*root;
+            p = bigSubtract(p, String(sqr));
+        } else {
+            let t = bigMul(result.replace(".", ""), "20");
+            let found = false;
+            for(let d = 0; d <= 10; d++) {
+                let term = bigMul(bigSum(t, String(d)), String(d));
+                if(compare(term, String(p)) > 0) {
+                    d--;
+                    term = bigMul(bigSum(t, String(d)), String(d));
+                    result += String(d);
+                    p = bigSubtract(p, term);
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {
+                result += "0";
+            }
+        }
+
+        if(p === "") {
+            break;
+        }
+    }
+
+    return result;
+}
 
 
 function log(text, value) {
