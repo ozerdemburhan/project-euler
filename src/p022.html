@@ -26,7 +26,7 @@
 		var sum = "0";
 		for(var index = 0; index < sorted.length; index++) {
 			var score = (index + 1) * wordValue(sorted[index]);
-			sum = bigSum(sum, String(score));
+			sum = longSum(sum, String(score));
 		}
 
 		log("sum", sum);

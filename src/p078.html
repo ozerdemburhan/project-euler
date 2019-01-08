@@ -31,9 +31,9 @@
             while(pg <= n) {
                 var sign = (i%4 > 1) ? -1 : 1;
                 if(sign < 0) {
-                    p[n] = bigSubtract(p[n], p[n-pg]);
+                    p[n] = longSubtract(p[n], p[n-pg]);
                 } else {
-                    p[n] = bigSum(p[n], p[n-pg]);
+                    p[n] = longSum(p[n], p[n-pg]);
                 }
 
                 i++;

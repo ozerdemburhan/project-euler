@@ -119,8 +119,8 @@
 
     function rsum(r1, r2) {
         var n1 = r1[0], d1 = r1[1], n2 = r2[0], d2 = r2[1];
-        var n = bigSum(bigMul(n1, d2), bigMul(n2, d1));
-        var d = bigMul(d1, d2);
+        var n = longSum(longMul(n1, d2), longMul(n2, d1));
+        var d = longMul(d1, d2);
         return [n, d];
     }
 

@@ -38,7 +38,7 @@
         var result = "1";
 
         for(var i = 0; i < b; i++) {
-            result = bigMul(result, String(a));
+            result = longMul(result, String(a));
             if(result.length > 11) {
                 result = result.substr(-11);
             }

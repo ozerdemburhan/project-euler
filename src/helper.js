@@ -14,7 +14,7 @@ String.prototype.count = function(ch) {
 }
 
 
-function bigSum(s1, s2) {
+function longSum(s1, s2) {
     var sg1 = (s1.startsWith("-") ? -1 : 1);
     if(sg1 < 0) {
         s1 = s1.substring(1);
@@ -25,9 +25,9 @@ function bigSum(s1, s2) {
     }
 
     if((sg1 < 0) && (sg2 > 0)) {
-        return bigSubtract(s2, s1);
+        return longSubtract(s2, s1);
     } else if((sg1 > 0) && (sg2 < 0)) {
-        return bigSubtract(s1, s2);
+        return longSubtract(s1, s2);
     }
 
     if(s1.length != s2.length) {
@@ -54,7 +54,7 @@ function bigSum(s1, s2) {
     return (sg1*sg2 < 0 ? "-" : "") + trim0(sum);
 }
 
-function bigSubtract(s1, s2) {
+function longSubtract(s1, s2) {
     var sg1 = (s1.startsWith("-") ? -1 : 1);
     if(sg1 < 0) {
         s1 = s1.substring(1);
@@ -65,7 +65,7 @@ function bigSubtract(s1, s2) {
     }
 
     if(sg1 !== sg2) {
-        return (sg1 < 0 ? "-" : "") + bigSum(s1, s2);
+        return (sg1 < 0 ? "-" : "") + longSum(s1, s2);
     }
 
     var length = Math.max(s1.length, s2.length);
@@ -109,13 +109,49 @@ function bigSubtract(s1, s2) {
     return (minus ? "-" : "") + trim0(sub);
 }
 
+function longDiv(s1, s2) {
+    var c = compare(s1, s2);
+    if(c < 0) {
+        return "0";
+    } else if(c == 0) {
+        return "1";
+    }
+
+    var div = "";
+    var end = false;
+
+    end:
+        while(true) {
+            var s = s1.substr(0, s2.length);
+            if(compare(s, s2) < 0) {
+                s = s1.substr(0, s2.length+1);
+            }
+
+            for(var i = 0; i < 9; i++) {
+                var mul = longMul(s2, String(i));
+                var cc = compare(mul, s);
+                if(cc == 0) {
+                    div = String(i) + div;
+                    break end;
+                } else if(cc > 0) {
+                    mul = longMul(s2, String(i-1));
+                    var sub = longSubtract(s, mul);
+                    s1 = sub + s1.substr(i+1);
+                    div = String(i-1) + div;
+                    break end;
+                }
+            }
+        }
+
+    return div;
+}
 
 
 function arraySum(arr) {
     var sum = arr[0];
 
     for(var i = 1; i < arr.length; i++) {
-        sum = bigSum(sum, arr[i]);
+        sum = longSum(sum, arr[i]);
     }
 
     return sum;
@@ -128,7 +164,7 @@ function trim0(s) {
 }
 
 
-function bigMul(s1, s2) {
+function longMul(s1, s2) {
     var arr = [];
     var lastIndex = s1.length - 1;
 
@@ -181,14 +217,14 @@ function factorial(n) {
     var f = "1";
 
     for(var i = 1; i <= n; i++) {
-        f = bigMul(f, String(i));
+        f = longMul(f, String(i));
     }
 
-    while(f.startsWith("0")) {
-        f = f.substr(1);
-    }
+    // while(f.startsWith("0")) {
+    //     f = f.substr(1);
+    // }
 
-    return f;
+    return trim0(f);
 }
 
 function getProperDivisorsSum(n) {
@@ -217,7 +253,7 @@ function power(a, b) {
     var result = "1";
 
     for(var i = 0; i < b; i++) {
-        result = bigMul(result, String(a));
+        result = longMul(result, String(a));
     }
 
     return result;
@@ -397,17 +433,17 @@ function sqrtGeneric(n, f) {
             let root = Math.floor(Math.sqrt(Number(p)));
             result += String(root);
             let sqr = root*root;
-            p = bigSubtract(p, String(sqr));
+            p = longSubtract(p, String(sqr));
         } else {
-            let t = bigMul(result.replace(".", ""), "20");
+            let t = longMul(result.replace(".", ""), "20");
             let found = false;
             for(let d = 0; d <= 10; d++) {
-                let term = bigMul(bigSum(t, String(d)), String(d));
+                let term = longMul(longSum(t, String(d)), String(d));
                 if(compare(term, String(p)) > 0) {
                     d--;
-                    term = bigMul(bigSum(t, String(d)), String(d));
+                    term = longMul(longSum(t, String(d)), String(d));
                     result += String(d);
-                    p = bigSubtract(p, term);
+                    p = longSubtract(p, term);
                     found = true;
                     break;
                 }
