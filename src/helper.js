@@ -461,6 +461,19 @@ function sqrtGeneric(n, f) {
     return result;
 }
 
+function copyArr2D(arr) {
+    let result = [];
+    for(let row = 0; row < arr.length; row++) {
+        result.push([]);
+        for(let col = 0; col < arr[row].length; col++) {
+            result[row].push(arr[row][col]);
+        }
+    }
+
+    return result;
+}
+
+
 
 function log(text, value) {
     document.write(text + ": " + value + "<br>");
