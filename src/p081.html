@@ -99,10 +99,9 @@
     start();
 
     function start() {
-        let mat = [], matrice = [], path = [];
+        let mat = [];
         for(let i = 0; i < m.length; i += 80) {
             mat.push(m.slice(i, i+80));
-            matrice.push(m.slice(i, i+80));
         }
 
         for(let row = 0; row < mat.length; row++) {
