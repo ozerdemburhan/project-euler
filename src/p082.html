@@ -117,8 +117,9 @@
                     sum += m[trow][col];
                     sums.push(sum + m[trow][col+1]);
                 }
-
-                sum = getMin(sums);
+;
+                sums.sort(function(a, b) {return a-b;});
+                sum = sums[0];
                 arr[row] = sum;
             }
 
@@ -129,20 +130,9 @@
         }
 
         let sums = [].concat([], arr);
-        let minSum = getMin(sums);
+        sums.sort(function(a, b) {return a-b;});
+        let minSum = sums[0];
         document.write("min path sum: " + (minSum) + "<br>");
-    }
-
-    function getMin(arr) {
-        let min;
-
-        for(let i = 0; i < arr.length; i++) {
-            if(!min || (min > arr[i])) {
-                min = arr[i];
-            }
-        }
-
-        return min;
     }
 
     function prepare() {
