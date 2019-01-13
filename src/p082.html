@@ -103,11 +103,10 @@
             arr = new Array(m.length);
 
             for(let row = 0; row < m.length; row++) {
-                let sum = m[row][col];
+                let sum = 0;
                 let sums = [];
-                sums.push(sum + m[row][col+1]);
 
-                for(let trow = row-1; trow >= 0; trow--) {
+                for(let trow = row; trow >= 0; trow--) {
                     sum += m[trow][col];
                     sums.push(sum + m[trow][col+1]);
                 }
