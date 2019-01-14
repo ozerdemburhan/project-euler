@@ -97,6 +97,13 @@
     start();
 
     function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
         m = prepare();
 
         for(let col = m.length-2; col >= 0; col--) {
