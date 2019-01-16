@@ -171,28 +171,20 @@
         let row = loc[0], col = loc[1];
         let locs = [];
 
-        if(row > 0) {
+        if((row > 0) && !m[row-1][col].processed) {
             locs.push([row-1, col]);
         }
 
-        if(col > 0) {
+        if((col > 0) && !m[row][col-1].processed) {
             locs.push([row, col-1]);
         }
 
-        if(row < m.length-1) {
+        if((row < m.length-1) && !m[row+1][col].processed) {
             locs.push([row+1, col]);
         }
 
-        if(col < m[row].length-1) {
+        if((col < m[row].length-1) && !m[row][col+1].processed) {
             locs.push([row, col+1]);
-        }
-
-        let length = locs.length;
-        for(let i = length-1; i >= 0; i--) {
-            let lrow = locs[i][0], lcol = locs[i][1];
-            if(m[lrow][lcol].processed) {
-                locs.splice(i, 1);
-            }
         }
 
         return locs;
