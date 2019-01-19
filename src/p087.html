@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 87</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let nmax = 50000000;
+        let N = Math.floor(Math.sqrt(nmax));
+        let primes = preparePrimes(N);
+        let set = {};
+        let P = [
+            [2, 3, 4],
+            [2, 4, 3],
+            [3, 2, 4],
+            [3, 4, 2],
+            [4, 2, 3],
+            [4, 3, 2]
+        ];
+
+        for(let i = 0; i < primes.length; i++) {
+            for(let j = i; j < primes.length; j++) {
+                for(let k = j; k < primes.length; k++) {
+                    let p0 = primes[i], p1 = primes[j], p2 = primes[k];
+
+                    for(let l = 0; l < P.length; l++) {
+                        let n = Math.pow(p0, P[l][0]) + Math.pow(p1, P[l][1]) + Math.pow(p2, P[l][2]);
+                        if(n < nmax) {
+                            set[n] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        let count = Object.keys(set).length;
+        document.write("count: " + (count) + "<br>");
+    }
+
+</script>
+
+
+</html>
