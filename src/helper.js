@@ -5,7 +5,7 @@ String.prototype.replaceAt = function(index, replace) {
 String.prototype.count = function(ch) {
     var c = 0;
     for(var i = 0; i < this.length-ch.length+1; i++) {
-        if(this.substr(i, ch.length) == ch) {
+        if(this.substr(i, ch.length) === ch) {
             c++;
         }
     }
@@ -30,7 +30,7 @@ function longSum(s1, s2) {
         return longSubtract(s1, s2);
     }
 
-    if(s1.length != s2.length) {
+    if(s1.length !== s2.length) {
         var length = Math.max(s1.length, s2.length);
         s1 = "0".repeat(length - s1.length) + s1;
         s2 = "0".repeat(length - s2.length) + s2;
@@ -69,7 +69,7 @@ function longSubtract(s1, s2) {
     }
 
     var length = Math.max(s1.length, s2.length);
-    if(s1.length != s2.length) {
+    if(s1.length !== s2.length) {
         s1 = "0".repeat(length - s1.length) + s1;
         s2 = "0".repeat(length - s2.length) + s2;
     }
@@ -130,7 +130,7 @@ function longDiv(s1, s2) {
             for(var i = 0; i < 9; i++) {
                 var mul = longMul(s2, String(i));
                 var cc = compare(mul, s);
-                if(cc == 0) {
+                if(cc === 0) {
                     div = String(i) + div;
                     break end;
                 } else if(cc > 0) {
@@ -197,11 +197,11 @@ function singleMul(long, single) {
 }
 
 function arrayEquals(arr1, arr2) {
-    if(arr1 == arr2) {
+    if(arr1 === arr2) {
         return true;
     }
 
-    if(arr1.length != arr2.length) {
+    if(arr1.length !== arr2.length) {
         return false;
     }
 
@@ -231,7 +231,7 @@ function getProperDivisorsSum(n) {
     var sum = 0;
 
     for(var i = 1; i < n; i++) {
-        if(n % i == 0) {
+        if(n % i === 0) {
             sum += i;
         }
     }
@@ -240,13 +240,13 @@ function getProperDivisorsSum(n) {
 }
 
 function power(a, b) {
-    if(a == 0) {
-        if(b == 0) {
+    if(a === 0) {
+        if(b === 0) {
             return undefined;
         } else {
             return "0";
         }
-    } else if(b == 0) {
+    } else if(b === 0) {
         return "1";
     }
 
@@ -297,7 +297,7 @@ function isPrime(primes, n) {
     var prime = true;
 
     for(var j = 0; primes[j] <= sqrt; j++) {
-        prime = prime && (n % primes[j] != 0);
+        prime = prime && (n % primes[j] !== 0);
     }
 
     return prime;
@@ -305,7 +305,7 @@ function isPrime(primes, n) {
 
 function isPandigital(n, start, end) {
     var s = String(n);
-    if(s.length != end-start+1) {
+    if(s.length !== end-start+1) {
         return false;
     }
 
@@ -323,7 +323,7 @@ function getPrimeFactors(primes, n) {
     var ubound = Math.floor(Math.sqrt(n));
     for(var i = 0; primes[i] <= ubound; i++) {
         var prime = primes[i];
-        if(n % prime == 0) {
+        if(n % prime === 0) {
             var count = set[prime];
             if(!count) {
                 count = 0;
@@ -372,7 +372,7 @@ function getObjectSize(set) {
 }
 
 function isPalindrome(s) {
-    return s == reverse(s);
+    return s === reverse(s);
 }
 
 function reverse(s) {
@@ -390,7 +390,7 @@ function digitalSum(s) {
 
 function compare(s1, s2) {
     var length = Math.max(s1.length, s2.length);
-    if(s1.length != s2.length) {
+    if(s1.length !== s2.length) {
         s1 = "0".repeat(length - s1.length) + s1;
         s2 = "0".repeat(length - s2.length) + s2;
     }
@@ -424,7 +424,7 @@ function sqrtGeneric(n, f) {
 
     let p = "";
     for(let i = 0; i < s.length; i += 2) {
-        if(i == s0.length) {
+        if(i === s0.length) {
             result += ".";
         }
         p = p + s.substr(i, 2);
