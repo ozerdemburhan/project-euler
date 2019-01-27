@@ -28,10 +28,7 @@
         for(let i = 0; i < pl.length; i++) {
             let product = pl[i].reduce((prev, current) => prev*current);
             let sum = pl[i].reduce((prev, current) => prev+current, 0);
-            let term = {};
-            term.arr = pl[i];
-            term.product = product;
-            term.sum = sum;
+            let term = {"arr": pl[i], "product": product, "sum": sum};
             list.push(term);
         }
 
