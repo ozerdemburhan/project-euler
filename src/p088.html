@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 88</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let list = [];
+
+        let pl = productList(24000);
+
+        for(let i = 0; i < pl.length; i++) {
+            let product = pl[i].reduce((prev, current) => prev*current);
+            let sum = pl[i].reduce((prev, current) => prev+current, 0);
+            let term = {};
+            term.arr = pl[i];
+            term.product = product;
+            term.sum = sum;
+            list.push(term);
+        }
+
+        list.sort(function(a, b) {
+            return a.product-b.product;
+        });
+
+        let set = {}, sum = 0;
+        for(let k = 2; k <= 12000; k++) {
+            let n = 2*k;
+
+            for(let i = 0; i < list.length; i++) {
+                let term = list[i];
+                if(term.product > n) {
+                    break;
+                }
+
+                let check = (term.arr.length <= k) && (term.product === (term.sum + k-term.arr.length));
+                if(check) {
+                    if(!set[term.product]) {
+                        sum += term.product;
+                        set[term.product] = 1;
+                    }
+                    break;
+                }
+            }
+        }
+
+        document.write("sum: " + (sum) + "<br>");
+
+    }
+
+    function productList(n) {
+        let kmax = Math.floor(Math.log(n)/Math.log(2));
+        let result = [];
+
+        for(let k = 2; k <= kmax; k++) {
+            let arr = smallerProducts(n, k, 2);
+            for(let i = 0; i < arr.length; i++) {
+                result.push(arr[i]);
+            }
+        }
+
+        return result;
+    }
+
+    function smallerProducts(n, k, last) {
+        let result = [];
+        if(k === 1) {
+            for(let i = last; i <= n; i++) {
+                result.push([i]);
+            }
+            return result;
+        }
+
+        for(let i = last; i <= n/last; i++) {
+            let arr = smallerProducts(n/i, k-1, i);
+            if(arr.length === 0) {
+                break;
+            }
+
+            for(let j = 0; j < arr.length; j++) {
+                result.push([i].concat(arr[j]));
+            }
+        }
+
+        return result;
+    }
+
+</script>
+
+
+</html>
