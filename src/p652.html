@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 652</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let count3 = howMany(3);
+        document.write("count3: " + (count3) + "<br>");
+    }
+
+    function howMany(n) {
+        let count = Math.floor(18*Math.log(10)/Math.log(n));
+        return count;
+    }
+
+</script>
+
+
+</html>
