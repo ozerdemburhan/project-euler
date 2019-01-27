@@ -21,16 +21,7 @@
     }
 
     function doStart() {
-        let list = [];
-
-        let pl = productList(24000);
-
-        for(let i = 0; i < pl.length; i++) {
-            let product = pl[i].reduce((prev, current) => prev*current);
-            let sum = pl[i].reduce((prev, current) => prev+current, 0);
-            let term = {"arr": pl[i], "product": product, "sum": sum};
-            list.push(term);
-        }
+        let list = productList(24000);
 
         list.sort(function(a, b) {
             return a.product-b.product;
@@ -67,7 +58,10 @@
         for(let k = 2; k <= kmax; k++) {
             let arr = smallerProducts(n, k, 2);
             for(let i = 0; i < arr.length; i++) {
-                result.push(arr[i]);
+                let product = arr[i].reduce((prev, current) => prev*current);
+                let sum = arr[i].reduce((prev, current) => prev+current, 0);
+                let term = {"arr": arr[i], "product": product, "sum": sum};
+                result.push(term);
             }
         }
 
