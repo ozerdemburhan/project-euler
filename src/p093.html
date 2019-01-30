@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 93</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let arr = [1, 2, 3, 4];
+        let ops = ["+", "-", "*", "/"];
+
+        let ss = permutations(arr, 4, false);
+        let os = permutations(ops, 3, true);
+        document.write("ss.length: " + (ss.length) + "<br>");
+        document.write("os.length: " + (os.length) + "<br>");
+
+        for(let i = 0; i < os.length; i++) {
+            document.write(os[i] + "<br>");
+        }
+    }
+
+    function permutations(arr, r, repeat) {
+        let result = [];
+
+        if(r === 1) {
+            for(let i = 0; i < arr.length; i++) {
+                result.push([arr[i]]);
+            }
+            return result;
+        }
+
+        for(let i = 0; i < arr.length; i++) {
+            let e = arr[i];
+            let iarr = arr.slice();
+
+            if(!repeat) {
+                iarr.splice(i, 1);
+            }
+
+            let newc = permutations(iarr, r-1, repeat);
+
+            for(let j = 0; j < newc.length; j++) {
+                result.push([e].concat(newc[j]));
+            }
+        }
+
+        return result;
+    }
+
+
+
+
+</script>
+
+
+</html>

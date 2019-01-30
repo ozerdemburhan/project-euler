@@ -23,7 +23,7 @@
     }
 
     function doStart() {
-        let c1 = C(digits, 6);
+        let c1 = uniqueSubsets(digits, 6);
         let c2 = c1.slice();
 
         document.write("c1.length: " + (c1.length) + "<br>");
@@ -77,7 +77,7 @@
         return arr;
     }
 
-    function C(arr, r) {
+    function uniqueSubsets(arr, r) {
         let result = [];
 
         if(r === 1) {
@@ -91,7 +91,7 @@
             let e = arr[i];
             let iarr = arr.slice();
             iarr.splice(0, i+1);
-            let newc = C(iarr, r-1);
+            let newc = uniqueSubsets(iarr, r-1);
 
             for(let j = 0; j < newc.length; j++) {
                 result.push([e].concat(newc[j]));
@@ -100,7 +100,6 @@
 
         return result;
     }
-
 
 
 </script>

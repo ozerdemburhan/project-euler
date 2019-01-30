@@ -18,6 +18,14 @@
     start();
 
     function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+
+    function doStart() {
         for(var L = 12; L < 1500000; L += 2) {
             bend(L);
         }

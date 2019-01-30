@@ -414,6 +414,55 @@ function phi(primes, n) {
     return coprimes;
 }
 
+function sqrtExperimental(n, f) {
+    let result = "";
+    let s0 = String(n);
+    if(s0.length % 2 === 1) {
+        s0 = "0" + s0;
+    }
+    s = s0 + "0".repeat(f*2);
+
+    let p = "";
+    for(let i = 0; i < s.length; i += 2) {
+        if(i === s0.length) {
+            result += ".";
+        }
+        p = p + s.substr(i, 2);
+
+        if(i === 0) {
+            let root = Math.floor(Math.sqrt(Number(p)));
+            result += String(root);
+            let sqr = root*root;
+            // p = longSubtract(p, String(sqr));
+            p = String(p-sqr);
+        } else {
+            // let t = longMul(result.replace(".", ""), "20");
+            let t = Number(result.replace(".", ""))*20;
+            let found = false;
+            for(let d = 0; d <= 10; d++) {
+                // let term = longMul(longSum(t, String(d)), String(d));
+                let term = (t+d)*d;
+                // if(compare(term, String(p)) > 0) {
+                if(term > p) {
+                    d--;
+                    // term = longMul(longSum(t, String(d)), String(d));
+                    term = (t+d)*d;
+                    result += String(d);
+                    // p = longSubtract(p, term);
+                    p = String(p-term);
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {
+                result += "0";
+            }
+        }
+    }
+
+    return result;
+}
+
 function sqrtGeneric(n, f) {
     let result = "";
     let s0 = String(n);
@@ -453,13 +502,14 @@ function sqrtGeneric(n, f) {
             }
         }
 
-        if(p === "") {
-            break;
-        }
+        // if(p === "") {
+        //     break;
+        // }
     }
 
     return result;
 }
+
 
 
 function log(text, value) {
