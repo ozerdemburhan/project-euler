@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <script src="helper.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Problem 95</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    var primes = [];
+    let longestChain = [];
+    let N = 0;
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        primes = preparePrimes(1000);
+
+        for(let n = 2; n <= 1000000; n++) {
+            let chain = [n];
+            let check = amicableChain(n, chain);
+            if(check) {
+                if(chain.length > longestChain.length) {
+                    longestChain = chain;
+                    N = n;
+                }
+            }
+        }
+
+        longestChain.sort(function(a, b) {
+            return Number(a)-Number(b);
+        });
+        document.write("N: " + (N) + "<br>");
+        document.write("longestChain.length: " + (longestChain.length) + "<br>");
+        document.write("longestChain[0]: " + (longestChain[0]) + "<br>");
+        document.write("longestChain: " + (longestChain) + "<br>");
+    }
+
+    function amicableChain(n, chain) {
+        if(n === 1) {
+            return false;
+        }
+
+        let divSum = properDivisorSum(n);
+        if(divSum > 1000000) {
+            return false;
+        }
+
+        if(chain[0] === divSum) {
+            return true;
+        }
+
+        if(chain.includes(divSum)) {
+            return false;
+        }
+
+        chain.push(divSum);
+        return amicableChain(divSum, chain);
+    }
+
+    function properDivisorSum(n) {
+        let psum = 1;
+        let pfs = getPrimeFactors(primes, n);
+        for(prime in pfs) {
+            let a = Number(prime);
+            let sum = 0;
+            for(let pow = 0; pow <= pfs[prime]; pow++) {
+                sum += Math.pow(a, pow);
+            }
+            psum *= sum;
+        }
+
+        return psum-n;
+    }
+
+
+
+</script>
+
+
+</html>
