@@ -28,8 +28,7 @@
 
         for(let n = 2; n <= 1000000; n++) {
             let chain = [n];
-            let check = amicableChain(n, chain);
-            if(check) {
+            if(amicableChain(n, chain)) {
                 if(chain.length > longestChain.length) {
                     longestChain = chain;
                     N = n;
@@ -37,13 +36,14 @@
             }
         }
 
+
+        document.write("longestChain.length: " + (longestChain.length) + "<br>");
+        document.write("longestChain: " + (longestChain) + "<br>");
+
         longestChain.sort(function(a, b) {
             return Number(a)-Number(b);
         });
-        document.write("N: " + (N) + "<br>");
-        document.write("longestChain.length: " + (longestChain.length) + "<br>");
-        document.write("longestChain[0]: " + (longestChain[0]) + "<br>");
-        document.write("longestChain: " + (longestChain) + "<br>");
+        document.write("the smallest member: " + (longestChain[0]) + "<br>");
     }
 
     function amicableChain(n, chain) {
