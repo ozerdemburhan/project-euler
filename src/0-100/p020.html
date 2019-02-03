@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 20</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var n = factorial(100);
+        var sum = 0;
+        log("n", n);
+
+        for(var i = 0; i < n.length; i++) {
+            sum += Number(n.substr(i, 1));
+        }
+
+        log("sum", sum);
+    }
+
+
+</script>
+
+
+
+</html>

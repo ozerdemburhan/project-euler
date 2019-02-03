@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 38</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var max;
+
+        for(var i = 1000; i < 10000; i++) {
+            var concat = "";
+
+            for(var n = 1; n <= 9; n++) {
+                concat = concat + String(i * n);
+
+                if(n == 1) {
+                    continue;
+                }
+
+                if(isPandigital(concat, 1, 9)) {
+                    max = concat;
+                    document.write("i: " + i + ", n: " + n + ", concat: " + concat + "<br>");
+                    break;
+                }
+            }
+        }
+
+        document.write("max: " + (max) + "<br>");
+
+    }
+
+</script>
+
+
+</html>

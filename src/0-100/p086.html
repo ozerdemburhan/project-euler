@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 86</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let n = 0;
+        let M = 1815;
+
+        while(n < 1000000) {
+            n = count(M++);
+        }
+
+        M--;
+        document.write("M: " + (M) + "<br>");
+        document.write("count: " + (n) + "<br>");
+    }
+
+    function count(M) {
+        let cnt = 0;
+        for(let a = 1; a <= M; a++) {
+            for(let b = a; b <= M; b++) {
+                for(let c = b; c <= M; c++) {
+                    let l1 = Math.sqrt(a*a + (b+c)*(b+c));
+                    let l2 = Math.sqrt(b*b + (a+c)*(a+c));
+                    let l3 = Math.sqrt(c*c + (a+b)*(a+b));
+                    let l = Math.min(l1, l2, l3);
+                    if(Math.floor(l) === l) {
+                        cnt++;
+                    }
+                }
+            }
+        }
+
+        return cnt;
+    }
+
+</script>
+
+
+</html>

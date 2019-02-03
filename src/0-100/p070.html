@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 70</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    var primes = preparePrimes(10000);
+    start();
+
+    function start() {
+        var ratio = -1;
+        var minn = -1;
+        var mincoprimes = 0;
+        for(var n = 2; n <= 10000000; n++) {
+            var coprimes = phi(primes, n);
+            if(checkPermutation(n, coprimes)) {
+                if((ratio == -1) || (ratio > n/coprimes)) {
+                    ratio = n/coprimes;
+                    minn = n;
+                    mincoprimes = coprimes;
+                }
+            }
+        }
+
+        document.write("ratio: " + (ratio) + "<br>");
+        document.write("minn: " + (minn) + "<br>");
+        document.write("mincoprimes: " + (mincoprimes) + "<br>");
+    }
+
+    function checkPermutation(a, b) {
+        var s1 = String(a), s2 = String(b);
+        if(s1.length != s2.length) {
+            return false;
+        }
+
+        for(var i = 0; i < s1.length; i++) {
+            var ch = s1.substr(i, 1);
+            if(s1.count(ch) != s2.count(ch)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+</script>
+
+
+</html>

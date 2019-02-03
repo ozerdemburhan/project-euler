@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 52</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        for(var i = 1; i < 150000; i++) {
+            checkNumber(i);
+        }
+    }
+
+    function checkNumber(n) {
+        var s = getDigits(n).toString();
+        var check = true;
+
+        for(var i = 2; i <= 6; i++) {
+            var si = getDigits(i*n).toString();
+            check = check && (si === s);
+        }
+
+        if(check) {
+            document.write("n: " + (n) + "<br>");
+        }
+
+        return check;
+    }
+
+    function getDigits(n) {
+        var result = [];
+        var arr = n.toString().split("");
+
+        for(var i = 0; i < arr.length; i++) {
+            if(result.indexOf(arr[i]) == -1) {
+                result.push(arr[i]);
+            }
+        }
+
+        result.sort();
+        return result;
+    }
+
+
+</script>
+
+
+</html>

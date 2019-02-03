@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 85</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let area = 0, mm, nn;
+        let diff = Number.MAX_VALUE;
+        let s = 2000000;
+        for(let m = 1; m < 8000000; m++) {
+            let d = 4*s/(m*(m+1));
+            let delta = Math.sqrt(1 + 4*d);
+            let n = (-1+delta)/2;
+            let ar = m*Math.floor(n);
+            let arDiff = m*n-ar;
+
+            if(diff > arDiff) {
+                diff = arDiff;
+                area = ar;
+                mm = m;
+                nn = n;
+            }
+        }
+
+        document.write("area: " + (area) + "<br>");
+        document.write("m: " + (mm) + "<br>");
+        document.write("n: " + (nn) + "<br>");
+    }
+
+</script>
+
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+	<script src="../helper.js"></script>
+	<link rel="stylesheet" href="../main.css">
+
+	<title>Problem 23</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	var abundantNumbers = [];
+
+	start();
+
+	function start() {
+		prepare();
+		log("abundant numbers length", abundantNumbers.length + "<br>");
+
+		nonAbundantList = [];
+
+		for(var i = 1; i <= 28123; i++) {
+			var nonAbundantSum = true;
+
+			for(var j = 0; j < abundantNumbers.length; j++) {
+				if(abundantNumbers[j] > i) {
+					break;
+				}
+
+				var ab1 = abundantNumbers[j];
+				var ab2 = i - ab1;
+				if(abundantNumbers.indexOf(ab2) != -1) {
+					nonAbundantSum = false;
+					break;
+				}
+			}
+
+			if(nonAbundantSum) {
+				nonAbundantList.push(i);
+			}
+		}
+
+		log("non abundant list", nonAbundantList);
+
+		var sum = 0;
+		for(var i = 0; i < nonAbundantList.length; i++) {
+			sum += nonAbundantList[i];
+		} 
+
+		log("sum", sum);
+	}
+
+	function prepare() {
+		for(var i = 1; i <= 28123; i++) {
+			var s = getProperDivisorsSum(i);
+			if(s > i) {
+				abundantNumbers.push(i);
+			}			
+		}
+	}
+
+</script>
+
+
+
+</html>

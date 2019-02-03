@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 74</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var count = 0;
+        for(var i = 1; i < 1000000; i++) {
+            var length = factorialChainLength(String(i));
+            if(length == 60) {
+                count++;
+            }
+        }
+
+        document.write("count: " + (count) + "<br>");
+    }
+
+    function factorialChainLength(n) {
+        var values = [];
+        while(true) {
+            var f = digitFactorial(n);
+            if(values.indexOf(f) != -1) {
+                values.push(f);
+                break;
+            }
+
+            n = f;
+            values.push(f);
+        }
+
+        return values.length;
+    }
+
+    function digitFactorial(n) {
+        var arr = String(n).split("");
+        var sum = "0";
+
+        for(var s of arr) {
+            sum = longSum(sum, factorial(s));
+        }
+
+        return sum;
+    }
+
+</script>
+
+
+</html>

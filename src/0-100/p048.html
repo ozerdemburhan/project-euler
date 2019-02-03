@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 48</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var arr = [];
+
+        for(var n = 1; n <= 1000; n++) {
+            arr.push(powerMod(n, n));
+        }
+
+        var result = arraySum(arr);
+        document.write("result: " + (result.substr(-10)) + "<br>");
+    }
+
+    function powerMod(a, b) {
+        if(a == 0) {
+            if(b == 0) {
+                return undefined;
+            } else {
+                return "0";
+            }
+        } else if(b == 0) {
+            return "1";
+        }
+
+        var result = "1";
+
+        for(var i = 0; i < b; i++) {
+            result = longMul(result, String(a));
+            if(result.length > 11) {
+                result = result.substr(-11);
+            }
+        }
+
+        return result;
+    }
+
+
+
+
+</script>
+
+
+</html>

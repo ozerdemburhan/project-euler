@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 53</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let pascal = [];
+        pascal.push([1]);
+        pascal.push([1, 1]);
+        let count = 0;
+
+        for(let n = 2; n <= 100; n++) {
+            let arr = [1];
+            for(let r = 1; r < n; r++) {
+                let t1 = pascal[n-1][r-1];
+                let t2 = pascal[n-1][r];
+                let term = t1+t2;
+
+                if((t1 === -1) || (t2 === -1)) {
+                    term = -1;
+                }
+
+                if(term > 1000000) {
+                    term = -1;
+                }
+
+                if(term === -1) {
+                    count++;
+                }
+
+                arr.push(term);
+            }
+            arr.push(1);
+            pascal.push(arr);
+        }
+
+        document.write("count: " + (count) + "<br>");
+    }
+
+</script>
+
+
+</html>

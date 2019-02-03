@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 77</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    var primes = preparePrimes(100);
+    start();
+
+    function start() {
+        var N = 10;
+        while(true) {
+            length = search(N, 0).length;
+            if(length > 5000) {
+                document.write("N: " + (N) + "<br>");
+                break;
+            }
+            N++;
+        }
+    }
+
+    function search(N, currentIndex) {
+        var values = [];
+        for(var i = currentIndex; primes[i] <= N; i++) {
+            var arr = [];
+            if(N == primes[i]) {
+                arr.push(primes[i]);
+                values.push(arr);
+            } else {
+                var s = search(N-primes[i], i);
+                for(var j = 0; j < s.length; j++) {
+                    arr = [primes[i]].concat(s[j]);
+                    values.push(arr);
+                }
+            }
+        }
+
+        return values;
+    }
+
+</script>
+
+
+</html>

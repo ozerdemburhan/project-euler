@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 2</title>
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var sum = 0;
+        var n = 0;
+        var f = fibo(n);
+
+        while(f < 4000000) {
+            if(f % 2 == 0) {
+                sum += f;
+            }
+
+            f = fibo(++n);
+        }
+
+        document.write("sum: " + sum + "<br>");
+    }
+
+    function fibo(n) {
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+
+        return fibo(n - 2) + fibo(n - 1);
+    }
+
+</script>
+
+
+
+</html>

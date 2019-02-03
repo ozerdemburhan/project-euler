@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 26</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var primes = preparePrimes(1000);
+        var imax = 0, jmax = 0;
+
+        for(var i = 0; i < primes.length; i++) {
+            var n = "";
+
+            for(var j = 1; j < 1000; j++) {
+                n = "9".repeat(j);
+
+                var remain = longMod(n, String(primes[i]));
+
+                if(remain == "0") {
+                    if(jmax < j) {
+                        imax = i;
+                        jmax = j;
+                    }
+                    break;
+                }
+            }
+        }
+
+        document.write("jmax: " + (jmax) + "<br>");
+    }
+
+    function longMod(n, d) {
+        var result = "";
+
+        var part = Number(n.substr(0, d.length));
+        n = n.substr(d.length);
+        while(n.length > 0) {
+            var nd = Number(d);
+            var div = Math.floor(part / nd);
+            var remain = part % nd;
+            result = result + String(div);
+
+            if(remain != "0") {
+                part = remain + n.substr(0, 1);
+                n = n.substr(1);
+            } else {
+                part = n.substr(0, d.length);
+                n = n.substr(d.length);
+            }
+        }
+
+        return Number(remain);
+    }
+
+
+
+</script>
+
+
+
+</html>

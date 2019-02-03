@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+	<script src="../helper.js"></script>
+	<link rel="stylesheet" href="../main.css">
+
+	<title>Problem 30</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+	start();
+
+	function start() {
+		var sum = 0;
+
+		for(var i = 2; i < 10000000; i++) {
+			var value = calculate(i, 5);
+			if(value == i) {
+				log("i", i);
+				sum += value;
+			}
+		}
+
+		log("sum", sum);
+	}
+
+	function calculate(n, p) {
+		var sum = 0;
+		var s = String(n);
+
+		for(var i = 0; i < s.length; i++) {
+			var digit = Number(s.substr(i, 1));
+			sum += Math.pow(digit, p);
+		}
+
+		//document.write("n: " + n + ", sum: " + sum + "<br>");
+
+		return sum;
+	}
+
+
+</script>
+
+
+</html>

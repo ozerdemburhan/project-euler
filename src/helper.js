@@ -164,17 +164,35 @@ function trim0(s) {
 }
 
 
-function longMul(s1, s2) {
-    var arr = [];
-    var lastIndex = s1.length - 1;
+// function longMul(s1, s2) {
+//     var arr = [];
+//     var lastIndex = s1.length - 1;
+//
+//     for(var i = lastIndex; i >= 0; i--) {
+//         var mul = singleMul(s2, s1.substr(i, 1)) + "0".repeat(lastIndex - i);
+//         arr.push(mul);
+//     }
+//
+//     return arraySum(arr);
+// }
 
-    for(var i = lastIndex; i >= 0; i--) {
-        var mul = singleMul(s2, s1.substr(i, 1)) + "0".repeat(lastIndex - i);
-        arr.push(mul);
+function longMul() {
+    let s = "1";
+    for(let n = 0; n < arguments.length; n++) {
+        let s1 = String(arguments[n]);
+        var arr = [];
+        var lastIndex = s1.length-1;
+
+        for(var i = lastIndex; i >= 0; i--) {
+            var mul = singleMul(s, s1.substr(i, 1)) + "0".repeat(lastIndex - i);
+            arr.push(mul);
+        }
+        s = arraySum(arr);
     }
 
-    return arraySum(arr);
+    return s;
 }
+
 
 
 function singleMul(long, single) {

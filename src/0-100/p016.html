@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 16</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        var s = "1";
+
+        for(var i = 0; i < 1000; i++) {
+            s = singleMul(s, "2");
+        }
+
+        var sum = 0;
+
+        for(var i = 0; i < s.length; i++) {
+            sum += Number(s.substr(i, 1));
+        }
+
+        document.write("sum: " + (sum) + "<br>");
+    }
+
+</script>
+
+
+
+</html>

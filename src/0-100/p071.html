@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 71</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    // This problem was solved mostly with pencil/paper
+
+    start();
+
+    function start() {
+        var r = [428571, 999999];
+        r = reduce(r);
+        document.write("r: " + (r) + "<br>");
+    }
+
+    function reduce(r) {
+        var n = r[0], d = r[1];
+        var div = gcd(n, d);
+        return [n/div, d/div];
+    }
+
+    function gcd(a, b) {
+        return (b > 0) ? gcd(b, a % b) : a;
+    }
+
+
+</script>
+
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+	<script src="../helper.js"></script>
+	<link rel="stylesheet" href="../main.css">
+
+	<title>Problem 6</title>
+	<meta charset="utf-8">
+</head>
+
+
+<body>
+</body>
+
+<script>
+	start();
+	
+	function start() {
+		var s = 0;
+		var ss = 0;
+
+		for(var i = 1; i <= 100; i++) {
+			s += i;
+			ss += i * i;
+		}
+
+		document.write("result: " + (s*s - ss) + "<br>");
+	}
+
+</script>
+
+
+
+</html>

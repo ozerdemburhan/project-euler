@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 80</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+
+    function doStart() {
+        var sum = 0;
+        for(let n = 0; n < 100; n++) {
+            let root = Math.floor(Math.sqrt(n));
+            if(root === Math.sqrt(n)) {
+                continue;
+            }
+
+            let s = sqrtGeneric(n, 100).replace(".", "").substr(0, 100);
+            // document.write(n + ": " + s + "<br>");
+            sum += digitalSum(s);
+        }
+        document.write("sum: " + (sum) + "<br>");
+    }
+
+</script>
+
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 69</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    // Solved by using the method explained in Totient function docs.
+
+    start();
+
+    function start() {
+        var primes = preparePrimes(1000);
+        var ratio = 0;
+        var maxn = 0;
+        for(var n = 2; n <= 1000000; n++) {
+            var set = getPrimeFactors(primes, n);
+            var coprimes = n;
+            for(var key in set) {
+                coprimes *= (1-1/key);
+            }
+
+            if(ratio < n/coprimes) {
+                ratio = n/coprimes;
+                maxn = n;
+            }
+        }
+
+        document.write("ratio: " + (ratio) + "<br>");
+        document.write("maxn: " + (maxn) + "<br>");
+    }
+
+</script>
+
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 17</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+
+    const f20 = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+        "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+
+    const tens = ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+
+    start();
+
+    function start() {
+        var sum = 0;
+
+        for(var i = 1; i <= 1000; i++) {
+            var s = withLetters(i);
+            sum += s.length;
+        }
+
+        log("length", sum);
+    }
+
+
+    function withLetters(n) {
+        var s = "";
+
+        if(n < 20) {
+            s = f20[n];
+        } else if (n < 1000) {
+            let one = n % 10;
+            let mod100 = n % 100;
+            let ten = Math.floor(mod100/10);
+            let hundred = Math.floor(n/100);
+
+            if(hundred > 0) {
+                s += f20[hundred] + " hundred";
+            }
+
+            if(mod100 > 0) {
+                if(s.length > 0) {
+                    s += " and";
+                }
+
+                if(mod100 < 20) {
+                    s += " " + f20[mod100];
+                } else {
+                    s += " " + tens[ten];
+
+                    if(one > 0) {
+                        s += " " + f20[one];
+                    }
+                }
+            }
+        } else if(n === 1000) {
+            s = "one thousand";
+        }
+
+        s = s.replace(/\s/g, "");
+        // document.write("n: " + n + ", s: " + s + "<br>");
+
+        return s;
+    }
+
+</script>
+
+
+
+</html>
