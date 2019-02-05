@@ -26,6 +26,104 @@
 
     function doStart() {
         document.write("words.length: " + (words.length) + "<br>");
+        let pairs = findPairs();
+        for(let i = 0; i < pairs.length; i++) {
+            if(checkSquareAnagram(pairs[i][0], pairs[i][1])) {
+                break;
+            }
+        }
+    }
+
+    function checkSquareAnagram(w1, w2) {
+        let start = Math.floor(Math.sqrt(Math.pow(10, w1.length-1)));
+        let end = Math.floor(Math.sqrt(Math.pow(10, w1.length)));
+        let sqs = [];
+
+        for(let n = start; n < end; n++) {
+            let sq = String(n*n);
+            let arr = sq.split("");
+            let arr1 = arr.filter(function(e, index, self) {
+                return index === self.indexOf(e);
+            });
+            if(arr1.length === sq.length) {
+                sqs.push(n*n);
+            }
+        }
+
+        if(sqs.length === 0) {
+            return false;
+        }
+
+        for(let i = 0; i < sqs.length-1; i++) {
+            for(let j = i+1; j < sqs.length; j++) {
+                let check = checkSquare(sqs[i], sqs[j], w1, w2) || checkSquare(sqs[j], sqs[i], w1, w2)
+                if(check) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    function checkSquare(sq1, sq2, w1, w2) {
+        let ssq1 = String(sq1), ssq2 = String(sq2);
+        if(ssq1.length !== ssq2.length) {
+            return false;
+        }
+
+        let check = true;
+        for(let i = 0; i < w1.length; i++) {
+            let pos = w2.indexOf(w1.substr(i, 1));
+            check = check && (ssq1.substr(i, 1) === ssq2.substr(pos, 1));
+            if(!check) {
+                return false;
+            }
+        }
+
+        document.write(sq1 + "," + sq2 + " " + w1 + "," + w2 + "<br>");
+        return true;
+    }
+
+    function findPairs() {
+        let pairs = [];
+
+        for(let i = 0; i < words.length-1; i++) {
+            for(let j = i+1; j < words.length; j++) {
+                if(check(words[i], words[j])) {
+                    pairs.push([words[i], words[j]]);
+                }
+            }
+        }
+
+        pairs.sort(function(a, b) {
+            return b[0].length-a[0].length;
+        });
+
+        return pairs;
+    }
+
+    function check(s1, s2) {
+        s1 = String(s1);
+        s2 = String(s2);
+        if(s1.length !== s2.length) {
+            return false;
+        }
+
+        let s1r = s1.split("").reverse().join("");
+        if(s1r === s2) {
+            return false;
+        }
+
+        for(let i = 0; i < s2.length; i++) {
+            let length = s1.length;
+            s1 = s1.replace(s2.substr(i, 1), "");
+            if(length === s1.length) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 </script>
