@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 100</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    start();
+
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let blue = 1, prevBlue = 0;
+        let N = 1000000000000;
+
+        while(blue < N) {
+            let b = 2*blue;
+            let b1 = blue-1;
+            let tb = Math.floor(Math.sqrt(b)*Math.sqrt(b1))+1;
+            let t = tb;
+            let t1 = t-1;
+
+            let g1 = gcd(b, t);
+            b /= g1;
+            t /= g1;
+
+            let g2 = gcd(b1, t1);
+            b1 /= g2;
+            t1 /= g2;
+
+            let g3 = gcd(b1, t);
+            b1 /= g3;
+            t /= g3;
+
+            let g4 = gcd(b, t1);
+            b /= g4;
+            t1 /= g4;
+
+            let check = (b === 1) && (t === 1) && (b1 === 1) && (t1 === 1);
+            if(check) {
+                if(tb > N) {
+                    document.write("blue: " + (blue) + "<br>");
+                    document.write("total: " + (tb) + "<br>");
+                    break;
+                }
+
+                if(prevBlue === 0) {
+                    prevBlue = blue;
+                    blue++;
+                } else {
+                    let k = blue/prevBlue;
+                    prevBlue = blue;
+                    blue = Math.floor(blue*k);
+                }
+            } else {
+                blue++;
+            }
+        }
+    }
+
+</script>
+
+
+</html>
