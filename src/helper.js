@@ -148,8 +148,11 @@ function longDiv(s1, s2) {
 
 
 function arraySum(arr) {
-    var sum = arr[0];
+    if(arr.length === 0) {
+        return "0";
+    }
 
+    var sum = arr[0];
     for(var i = 1; i < arr.length; i++) {
         sum = longSum(sum, arr[i]);
     }
@@ -528,6 +531,9 @@ function sqrtGeneric(n, f) {
     return result;
 }
 
+function gcd(a, b) {
+    return (b > 0) ? gcd(b, a % b) : a;
+}
 
 
 function log(text, value) {
