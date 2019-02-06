@@ -535,6 +535,35 @@ function gcd(a, b) {
     return (b > 0) ? gcd(b, a % b) : a;
 }
 
+function permutations(arr, r, repeat) {
+    let result = [];
+
+    if(r === 1) {
+        for(let i = 0; i < arr.length; i++) {
+            result.push([arr[i]]);
+        }
+        return result;
+    }
+
+    for(let i = 0; i < arr.length; i++) {
+        let e = arr[i];
+        let iarr = arr.slice();
+
+        if(!repeat) {
+            iarr.splice(i, 1);
+        }
+
+        let newc = permutations(iarr, r-1, repeat);
+
+        for(let j = 0; j < newc.length; j++) {
+            result.push([e].concat(newc[j]));
+        }
+    }
+
+    return result;
+}
+
+
 
 function log(text, value) {
     document.write(text + ": " + value + "<br>");
