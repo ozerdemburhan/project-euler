@@ -54,8 +54,8 @@
             }
         }
 
-        document.write("nmax: " + (nmax) + "<br>");
-        document.write("ssmax: " + (ssmax) + "<br>");
+        document.write("max n: " + (nmax) + "<br>");
+        document.write("values: " + (ssmax) + "<br>");
     }
 
     function getLongestSetLength(ss, os) {
@@ -65,7 +65,7 @@
                 for(let k = 0; k < ps.length; k++) {
                     let value = evaluate(ss[i], os[j], ps[k]);
                     let check = (value === Math.floor(value)) && (value > 0);
-                    if(check && (values.indexOf(value) === -1)) {
+                    if(check && !values.includes(value)) {
                         values.push(value);
                     }
                 }
