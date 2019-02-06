@@ -11,6 +11,18 @@
 </body>
 
 <script>
+    const ps = [
+        [[0, 1]],
+        [[1, 2]],
+        [[2, 3]],
+        [[0, 2]],
+        [[1, 3]],
+        [[0, 1], [0, 2]],
+        [[0, 1], [2, 3]],
+        [[0, 2], [1, 2]],
+        [[1, 2], [1, 3]],
+        [[1, 3], [2, 3]]
+    ];
     start();
 
     function start() {
@@ -21,45 +33,93 @@
     }
 
     function doStart() {
-        let arr = [1, 2, 3, 4];
         let ops = ["+", "-", "*", "/"];
-
-        let ss = permutations(arr, 4, false);
         let os = permutations(ops, 3, true);
-        document.write("ss.length: " + (ss.length) + "<br>");
-        document.write("os.length: " + (os.length) + "<br>");
+        let nmax = 0, ssmax;
 
-        for(let i = 0; i < os.length; i++) {
-            document.write(os[i] + "<br>");
+        out:
+        for(let a = 1; a <= 6; a++) {
+            for(let b = a+1; b <= 7; b++) {
+                for(let c = b+1; c <= 8; c++) {
+                    for(let d = c+1; d <= 9; d++) {
+                        let arr = [a, b, c, d];
+                        let ss = permutations(arr, 4, false);
+                        let n = getLongestSetLength(ss, os);
+                        if((n > nmax)) {
+                            nmax = n;
+                            ssmax = ss[0];
+                        }
+                    }
+                }
+            }
         }
+
+        document.write("nmax: " + (nmax) + "<br>");
+        document.write("ssmax: " + (ssmax) + "<br>");
     }
 
-    function permutations(arr, r, repeat) {
-        let result = [];
-
-        if(r === 1) {
-            for(let i = 0; i < arr.length; i++) {
-                result.push([arr[i]]);
-            }
-            return result;
-        }
-
-        for(let i = 0; i < arr.length; i++) {
-            let e = arr[i];
-            let iarr = arr.slice();
-
-            if(!repeat) {
-                iarr.splice(i, 1);
-            }
-
-            let newc = permutations(iarr, r-1, repeat);
-
-            for(let j = 0; j < newc.length; j++) {
-                result.push([e].concat(newc[j]));
+    function getLongestSetLength(ss, os) {
+        let values = [];
+        for(let i = 0; i < ss.length; i++) {
+            for(let j = 0; j < os.length; j++) {
+                for(let k = 0; k < ps.length; k++) {
+                    let value = evaluate(ss[i], os[j], ps[k]);
+                    let check = (value === Math.floor(value)) && (value > 0);
+                    if(check && (values.indexOf(value) === -1)) {
+                        values.push(value);
+                    }
+                }
             }
         }
 
-        return result;
+        values.sort(function(a, b) {
+            return Number(a)-Number(b);
+        });
+
+        let length = 0;
+        for(let i = 0; i < values.length; i++) {
+            if(values[i]-length !== 1) {
+                break;
+            }
+            length++;
+        }
+
+        return length;
+    }
+
+    function evaluate(values, ops, ps) {
+        let statement = [];
+        for(let i = 0; i < values.length; i++) {
+            statement.push(String(values[i]));
+        }
+
+        for(let i = 0; i < ops.length; i++) {
+            let pos = 2*i+1;
+            statement.splice(pos, 0, ops[i]);
+        }
+
+        let valuePos = [0, 2, 4, 6];
+
+        for(let i = ps.length-1; i >= 0; i--) {
+            let openingPos = valuePos[ps[i][0]];
+            statement.splice(openingPos, 0, "(");
+            for(let j = 0; j < valuePos.length; j++) {
+                if(valuePos[j] >= openingPos) {
+                    valuePos[j]++;
+                }
+            }
+
+            let closingPos = valuePos[ps[i][1]]+1;
+            statement.splice(closingPos, 0, ")");
+            for(let j = 0; j < valuePos.length; j++) {
+                if(valuePos[j] >= closingPos) {
+                    valuePos[j]++;
+                }
+            }
+        }
+
+        let st = statement.join("");
+        return eval(st);
     }
 
 
