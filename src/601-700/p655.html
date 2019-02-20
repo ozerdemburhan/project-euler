@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 655</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+
+    // I've implemented the algorithm proposed by project-euler user kesir
+    // with a different approach.
+
+    const P = 10000019;
+    let modPowersOfTen = {};
+    let ps = {};
+    let pinner = {};
+    let pouter = {};
+
+    start();
+    function start() {
+        let d1 = new Date();
+        doStart();
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function prepareModPowersOfTen() {
+        modPowersOfTen[0] = 1;
+        let mod = 1;
+        for(let power = 1; power < 32; power++) {
+            mod *= 10;
+            mod = mod%P;
+            modPowersOfTen[power] = mod;
+        }
+    }
+
+    function getOddMod(a, m, ra, n) {
+        let mod = (a%P)*modPowersOfTen[n+1];
+        mod %= P;
+        mod += m*modPowersOfTen[n];
+        mod %= P;
+        mod = (mod+ra)%P;
+        return mod;
+    }
+
+    function getEvenMod(a, ra, n) {
+        let mod = (a%P)*modPowersOfTen[n];
+        mod %= P;
+        mod = (mod+ra%P)%P;
+        return mod;
+    }
+
+    function doStart() {
+        prepareModPowersOfTen();
+        generateMods();
+
+        // let evenSum = 0;
+        // for(let n = 16; n <= 32; n += 2) {
+        //     evenSum += countPalindromes(n);
+        // }
+        // document.write("evenSum: " + (evenSum) + "<br>");
+        //
+        // let oddSum = 0;
+        // for(let n = 17; n <= 31; n += 2) {
+        //     oddSum += countPalindromes(n);
+        // }
+        // document.write("oddSum: " + (oddSum) + "<br>");
+        // document.write("sum: " + (evenSum+oddSum) + "<br>");
+        let sum = 0;
+        for(let n = 16; n <= 32; n++) {
+            sum += countPalindromes(n);
+        }
+        document.write("sum: " + (sum) + "<br>");
+    }
+
+    function generateMods() {
+        for(let n = 1; n <= 32; n++) {
+            pinner[n] = {};
+            pouter[n] = {};
+        }
+
+        generateEvenMods();
+        generateOddMods();
+    }
+
+    function generateEvenMods() {
+        const END = 100000000;
+        for(let a = 1; a < END; a++) {
+            let ra = reverseNumber(a);
+            let sa = String(a);
+            let n = sa.length;
+            let innerEvenMod = getEvenMod(a, ra, n);
+            addMod(2*n, innerEvenMod, pinner);
+
+            let outerEvenMod = getEvenMod(a, ra, 16+n);
+            addMod(16+2*n, outerEvenMod, pouter);
+
+            let outerOddMod = getEvenMod(a, ra, 15+n);
+            addMod(15+2*n, outerOddMod, pouter);
+        }
+    }
+
+    function generateOddMods() {
+        for(let m = 1; m < 10; m++) {
+            addMod(1, m, pinner);
+        }
+
+        for(let m = 0; m < 10; m++) {
+            for(let a = 1; a < 10000000; a++) {
+                let ra = reverseNumber(a);
+                let sa = String(a);
+                let n = sa.length;
+
+                let innerMod = getOddMod(a, m, ra, n);
+                addMod(2*n+1, innerMod, pinner);
+            }
+        }
+    }
+
+
+    function addMod(n, mod, set) {
+        if(!set[n][mod]) {
+            set[n][mod] = 0;
+        }
+        set[n][mod]++;
+    }
+
+    function countPalindromes(N) {
+        let nmod = N%2;
+        let count = 0;
+
+        if((N <= 16) && pinner[N][0]) {
+            count += pinner[N][0];
+        } else {
+            if(pouter[N] && pouter[N][0]) {
+                count += pouter[N][0];
+            }
+
+            for(let n in pinner) {
+                if(n%2 !== nmod) {
+                    continue;
+                }
+
+                let power = (N-n)/2;
+                for(let mod in pinner[n]) {
+                    let modInner = (mod*modPowersOfTen[power])%P;
+                    let modOuter = (P-modInner)%P;
+                    if(pouter[N] && pouter[N][modOuter]) {
+                        count += pinner[n][mod]*pouter[N][modOuter];
+                    }
+                }
+            }
+        }
+
+        document.write(N + ": " + count + "<br>");
+        return count;
+    }
+
+    // taken from stackoverflow.com responses.
+    function reverseNumber(n) {
+        let digit, result = 0;
+
+        while(n) {
+            digit = n%10;
+            result = (result*10)+digit;
+            n = n/10|0;
+        }
+
+        return result;
+    }
+
+</script>
+
+
+</html>
