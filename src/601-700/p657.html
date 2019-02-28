@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 657</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+    const MAX_VALUE = 9007199254740991;
+    const MAX_LOG = Math.log(MAX_VALUE)/Math.LN10;
+    const N = 10000000;
+    const MOD = 1000000007;
+    const R = 1000000000000;
+
+    let invs = [0, 1];
+    let C = [];
+    let ps = [0, 1];
+
+    start();
+    function start() {
+        let d1 = new Date();
+        document.write("<pre>");
+        doStart();
+        document.write("</pre>");
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        prepareInverses(MOD);
+        prepareCombinations(N, MOD);
+        preparePowers(N, MOD);
+        calculate(N, R, MOD);
+    }
+
+    function calculate(n, r, mod) {
+        let r1 = calculateFirstTerm(n, r, mod);
+        let r2 = modMul(n, r, mod);
+        let sum1 = modSum(r1, r2, mod);
+
+        let sum = 0;
+        for(let k = 2; k <= n; k++) {
+            let r31 = r3(n, k, r, mod);
+            sum = modSum(sum, r31, mod);
+        }
+
+        let result = modSub(sum1, sum, mod);
+        result = modSum(result, 1, mod);
+        document.write("result: " + (result) + "<br>");
+    }
+
+
+    function calculateFirstTerm(n, r, mod) {
+        let result = ps[n];
+        result = modSub(result, n, mod);
+        result = modMul(result, invs[n-1], mod);
+        return result;
+    }
+
+    function r3(n, k, r, mod) {
+        let sign = 1;
+        if((n-k)%2 === 1) {
+            sign = -1+mod;
+        }
+
+        let r31 = ps[k];
+        r31 = modSub(r31, k, mod);
+        r31 = modMul(r31, invs[k-1], mod);
+
+        let result = modMul(sign, C[k], mod);
+        result = modMul(result, r31, mod);
+        return result;
+    }
+
+    function modSub(a, b, mod) {
+        a %= mod;
+        b %= mod;
+        let result = (a-b)%mod;
+        if(result < 0) {
+            result += mod;
+        }
+        return result;
+    }
+
+    function prepareCombinations(n, mod) {
+        let nom = 1;
+
+        C.push(1);
+        for(let i = n; i >= 1; i--) {
+            nom = modMul(nom, i, mod);
+            nom = modMul(nom, invs[n-i+1], mod);
+            C.push(nom)
+        }
+    }
+
+    function preparePowers(n, mod) {
+        for(let i = 2; i <= n; i++) {
+            let power = quickPowerRPlus1(i, mod);
+            ps.push(power);
+        }
+    }
+
+    function prepareInverses(mod) {
+        for(let n = 2; n <= N; n++) {
+            let inv = modularInverse(n, mod);
+            invs.push(inv);
+        }
+    }
+
+    function modularInverse(a, mod) {
+        let x = 0, y = 1, u = 1, v = 0;
+        let e = mod, f = a;
+        let c, d, q, r;
+
+        while(f !== 1) {
+            q = Math.floor(e/f);
+            r = e%f;
+            c = x-q*u;
+            d = y-q*v;
+            x = u;
+            y = v;
+            u = c;
+            v = d;
+            e = f;
+            f = r;
+        }
+        u = (u+mod)%mod;
+        return u;
+    }
+
+    function quickPowerRPlus1(a, mod) {
+        a = a%mod;
+        let result = powerTenMod(a, mod);
+        for(let i = 2; i <= 12; i++) {
+            result = powerTenMod(result, mod);
+        }
+
+        return modMul(result, a, mod);
+    }
+
+    function powerTenMod(a, mod) {
+        let result = 1;
+
+        for(let i = 1; i <= 10; i++) {
+            result = modMul(result, a, mod);
+        }
+        return result;
+    }
+
+
+    function modMul(a, b, mod) {
+        a %= mod;
+        b %= mod;
+        let loga = 0;
+        if(a > 1) {
+            loga = Math.log(a)/Math.LN10;
+        }
+
+        let logb = 0;
+        if(b > 1) {
+            logb = Math.log(b)/Math.LN10;
+        }
+
+        if(loga+logb < MAX_LOG) {
+            return (a*b)%mod;
+        }
+
+        let max = a;
+        let min = b;
+        if(a < b) {
+            max = b;
+            min = a;
+        }
+
+        let max1 = Math.floor(Math.sqrt(max));
+        let max2 = Math.floor(max/max1);
+        let remain = max-(max1*max2);
+
+        let mul1 = modMul(max1, min, mod);
+        let mul2 = modMul(max2, mul1, mod);
+        let mul3 = modMul(remain, min, mod);
+        return modSum(mul2, mul3, mod);
+    }
+
+    function modSum(a, b, mod) {
+        a %= mod;
+        b %= mod;
+        return (a+b)%mod;
+    }
+
+
+</script>
+
+
+</html>
