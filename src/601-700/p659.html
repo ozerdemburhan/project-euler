@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <script src="../helper.js"></script>
+    <link rel="stylesheet" href="../main.css">
+
+    <title>Problem 659</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+</body>
+
+<script>
+
+    let primes = preparePrimes(20000000);
+    let N = 1000000000;
+
+    start();
+    function start() {
+        let d1 = new Date();
+        document.write("<pre>");
+        doStart();
+        document.write("</pre>");
+        let elapsed = new Date() - d1;
+        document.write("elapsed time: " + (elapsed/1000) + "s.<br>");
+    }
+
+    function doStart() {
+        let sum = [0, 0];
+
+        for(let k = 1; k <= 10000000; k++) {
+            let n = 4*k**2+1;
+            let p = 0;
+            let sqrt = Math.floor(Math.sqrt(n));
+            for(let i = 0; primes[i] <= sqrt; i++) {
+                let pt = primes[i];
+                if(n%pt === 0) {
+                    n /= pt;
+                    p = pt;
+                    i--;
+                    sqrt = Math.floor(Math.sqrt(n));
+                }
+            }
+
+            if(n > p) {
+                p = n;
+            }
+            add(sum, p);
+        }
+
+        document.write("sum: " + (sum) + "<br>");
+    }
+
+    function add(f, n) {
+        let n1 = n%N;
+        let n2 = (n-n1)/N;
+        f[1] += n1;
+        f[0] += n2;
+
+        let mod = f[1]%N;
+        let div = (f[1]-mod)/N;
+        if(div > 1) {
+            f[0] += div;
+            f[1] = mod;
+        }
+        f[0] %= N;
+    }
+
+</script>
+
+
+</html>
