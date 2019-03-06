@@ -28,38 +28,31 @@
     function doStart() {
         let sum = [0, 0];
 
-        for(let k = 1; k <= 10000000; k++) {
+        for(let k = 1; k <= 1000000; k++) {
             let n = 4*k**2+1;
-            let p = 0;
             let sqrt = Math.floor(Math.sqrt(n));
             for(let i = 0; primes[i] <= sqrt; i++) {
                 let pt = primes[i];
                 if(n%pt === 0) {
                     n /= pt;
-                    p = pt;
                     i--;
                     sqrt = Math.floor(Math.sqrt(n));
                 }
             }
 
-            if(n > p) {
-                p = n;
-            }
-            add(sum, p);
+            add(sum, n);
         }
 
         document.write("sum: " + (sum) + "<br>");
     }
 
     function add(f, n) {
-        let n1 = n%N;
-        let n2 = (n-n1)/N;
-        f[1] += n1;
-        f[0] += n2;
+        f[0] += n/N|0
+        f[1] += n%N;
 
         let mod = f[1]%N;
-        let div = (f[1]-mod)/N;
-        if(div > 1) {
+        let div = f[1]/N|0;
+        if(div > 0) {
             f[0] += div;
             f[1] = mod;
         }
@@ -67,6 +60,4 @@
     }
 
 </script>
-
-
 </html>
