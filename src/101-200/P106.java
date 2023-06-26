@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class P106_1 {
+public class P106 {
 	
 	private final ObjectMapper mapper = new ObjectMapper();
 	
@@ -17,13 +17,12 @@ public class P106_1 {
 		
 		logger.info("started.");
 		
-		P106_1 problem = new P106_1();
+		P106 problem = new P106();
 		problem.start();		
 	}
 	
 	private void start() {
 		
-//		int[] set = new int[] {6,7,8,9,10,11,12};
 //		int[] set = new int[] {20,31,38,39,40,42,45};
 //		int[] set = new int[] {4,5,6,7};
 		int[] set = new int[] {11,12,13,14,15,16,17,18,19,20,21,22};
