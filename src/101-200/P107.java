@@ -1,4 +1,3 @@
-
 package com.apkbilisim.pe.p107;
 
 import java.io.BufferedReader;
@@ -59,72 +58,56 @@ public class P107 {
 		logger.info("min total:" + minTotal);
 		logger.info("savings: " + (total - minTotal));
 	}
-
+	
 	private boolean isCyclic(Set<Edge> T, Edge edge) {
-
-		List<Edge> list = new ArrayList<>(T);
-
-		if (list.size() < 2) {
+		
+		if(T.size() < 2) {
+			return false;
+		}
+		
+		Set<Edge> temp = new HashSet<>(T);
+		Set<Edge> edges = new HashSet<>();
+		
+		for(Edge e : T) {
+			if(e.hasEnd(edge.getV())) {
+				edges.add(e);
+				temp.remove(e);
+			}
+		}
+		
+		if(edges.isEmpty()) {
 			return false;
 		}
 
-		while (true) {
+		return isCyclic(temp, edges, edge.getV(), edge.getW());
+	}
+	
+	private boolean isCyclic(Set<Edge> T, Set<Edge> edges, Integer start, Integer end) {
 
-			int size = list.size();
+		Set<Edge> temp = new HashSet<>(T);
+		Set<Edge> es = new HashSet<>();
 
-			for (int i = 0; i < size - 1; i++) {
-				Edge e1 = list.get(i);
-
-				for (int j = i + 1; j < size; j++) {
-					Edge e2 = list.get(j);
-					Edge concat = concat(e1, e2);
-
-					if (concat == null) {
-						continue;
-					}
-
-					if (!list.contains(concat)) {
-						list.add(concat);
-					}
+		for(Edge e : edges) {
+			if(e.hasEnd(end)) {
+				return true;
+			}
+			
+			Integer w = e.otherEnd(start);
+			for(Edge e1 : T) {
+				if(e1.hasEnd(w)) {
+					es.add(e1);
+					temp.remove(e1);
 				}
 			}
-
-			if (size == list.size()) {
-				break;
-			}
-
-			size = list.size();
-		}
-
-		for (Edge e : list) {
-
-			boolean check = (e.getV() == edge.getV()) && (e.getW() == edge.getW());
-			if (check) {
+			
+			if(isCyclic(temp, es, w, end)) {
 				return true;
 			}
 		}
-
+		
 		return false;
 	}
-
-	private Edge concat(Edge e1, Edge e2) {
-
-		if (e1.getV() == e2.getV()) {
-			return new Edge(e1.getW(), e2.getW(), 0);
-
-		} else if (e1.getV() == e2.getW()) {
-			return new Edge(e1.getW(), e2.getV(), 0);
-
-		} else if (e1.getW() == e2.getV()) {
-			return new Edge(e1.getV(), e2.getW(), 0);
-
-		} else if (e1.getW() == e2.getW()) {
-			return new Edge(e1.getV(), e2.getV(), 0);
-		}
-
-		return null;
-	}
-
+	
 	private List<Edge> initializeEdges(Integer[][] graph) {
 
 		Set<Edge> edges = new HashSet<>();
@@ -222,6 +205,20 @@ class Edge {
 		this.v = v;
 		this.w = w;
 		this.weight = weight;
+	}
+	
+	public boolean hasEnd(Integer end) {
+		return (this.v == end) || (this.w == end);
+	}
+	
+	public Integer otherEnd(Integer v) {
+		
+		if(this.v == v) {
+			return this.w;
+			
+		} else {
+			return this.v;
+		}
 	}
 	
 	@Override
