@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 public class P107 {
 
 	public static void main(String[] args) {
+		
+		logger.info("started.");
 
 		P107 problem = new P107();
 		problem.start();
