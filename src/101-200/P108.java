@@ -1,15 +1,9 @@
 package com.apkbilisim.pe.p108;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class P108 {
-
-	private final ObjectMapper	mapper	= new ObjectMapper();
-
-	private int[]				primes	= null;
 
 	public static void main(String[] args) {
 		
@@ -42,15 +36,5 @@ public class P108 {
 			
 			n++;
 		}
-	}
-	 
-	private String tojson(Object object) {
-		try {
-			return mapper.writeValueAsString(object);
-		} catch (Exception e) {
-			logger.error("", e);
-		}
-
-		return null;
 	}
 }
