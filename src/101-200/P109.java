@@ -81,22 +81,22 @@ public class P109 {
 		private String		key;
 
 		public Checkout(String... cs) {
-			
-			if(cs.length == 1) {
-				this.cs = new String[] {"A00", "A00", cs[0]};
-				
-			} else if(cs.length == 2) {
-				this.cs = new String[] {"A00", cs[0], cs[1]};
-						
+
+			if (cs.length == 1) {
+				this.cs = new String[] { "A00", "A00", cs[0] };
+
+			} else if (cs.length == 2) {
+				this.cs = new String[] { "A00", cs[0], cs[1] };
+
 			} else {
-				this.cs = cs; 
+				this.cs = cs;
 			}
-			
+
 			this.point = P.get(this.cs[0]) + P.get(this.cs[1]) + P.get(this.cs[2]);
-			
-			String[] first2 = {this.cs[0], this.cs[1]};
+
+			String[] first2 = { this.cs[0], this.cs[1] };
 			Arrays.sort(first2);
-			
+
 			this.key = first2[0] + "-" + first2[1] + "-" + this.cs[2];
 		}
 
