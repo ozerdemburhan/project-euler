@@ -19,7 +19,7 @@ public class P113 {
 
     private void start() {
         
-        final BigInteger nine = new BigInteger("9");
+        final BigInteger NINE = new BigInteger("9");
         
         BigInteger count = BigInteger.ZERO;
         
@@ -27,7 +27,7 @@ public class P113 {
             BigInteger inc = countIncreasing(n);
             BigInteger dec = countDecreasing(n);
             
-            BigInteger dcount = inc.add(dec).subtract(nine); 
+            BigInteger dcount = inc.add(dec).subtract(NINE); 
             count = count.add(dcount);
         }
         
