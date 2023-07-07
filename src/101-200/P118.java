@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class P118 {
     
-    private final int                        UBOUND   = 1_000_000_000;
+    private final int                        UBOUND   = 100_000_000;
 
     private final Map<Integer, List<String>> PMAP     = new HashMap<>();
 
@@ -184,8 +184,6 @@ public class P118 {
                 }
             }
         }
-        
-        PMAP.remove(9);
     }
 
 }
