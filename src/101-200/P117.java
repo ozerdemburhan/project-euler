@@ -45,8 +45,6 @@ public class P117 {
     }
     
     private BigInteger calculate(int a, int b, int c, int d) {
-        BigInteger x = BigInteger.ONE;
-        
         BigInteger q = f(a + b + c + d);
         BigInteger de = f(a);
         de = de.multiply(f(b));
