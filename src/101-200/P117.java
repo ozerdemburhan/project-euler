@@ -46,10 +46,7 @@ public class P117 {
     
     private BigInteger calculate(int a, int b, int c, int d) {
         BigInteger q = f(a + b + c + d);
-        BigInteger de = f(a);
-        de = de.multiply(f(b));
-        de = de.multiply(f(c));
-        de = de.multiply(f(d));
+        BigInteger de = f(a).multiply(f(b)).multiply(f(c)).multiply(f(d));
         
         return q.divide(de);
     }
