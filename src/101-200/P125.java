@@ -66,14 +66,8 @@ public class P125 {
         String s = String.valueOf(n);
         StringBuilder b = new StringBuilder(s);
         String r = b.reverse().toString();
-
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) != r.charAt(i)) {
-                return false;
-            }
-        }
-
-        return true;
+        
+        return s.equals(r);
     }
 
 }
