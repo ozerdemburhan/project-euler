@@ -49,7 +49,6 @@ public class P129 {
             while(true) {
                 
                 for(long k : factors) {
-                    logger.info("factor: " + k);
                     BigInteger r = new BigInteger("1".repeat((int) k));
                     
                     if(r.mod(bn).compareTo(BigInteger.ZERO) == 0) {
