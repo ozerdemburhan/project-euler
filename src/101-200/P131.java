@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class P131 {
-    
+
     private List<Long> PRIMES = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -19,44 +19,44 @@ public class P131 {
 
         logger.info("finished.");
     }
-    
+
     private void start() {
-        
+
         preparePrimes(1_000_000);
-        
+
         int count = 0;
-        
-        for(long p : PRIMES) {
-            if(p >= 1_000_000) {
+
+        for (long p : PRIMES) {
+            if (p >= 1_000_000) {
                 break;
             }
-            
-            for(long t = 1; t < 1000; t++) {
+
+            for (long t = 1; t < 600; t++) {
                 long n = t * t * t;
                 double l = Math.pow(n + p, 1.0 / 3);
-                
+
                 long ceil = (long) Math.ceil(l);
                 long c3 = (long) Math.pow(ceil, 3);
-                
+
                 long floor = (long) Math.floor(l);
                 long f3 = (long) Math.pow(floor, 3);
-                
-                if(c3 == n + p) {
+
+                if (c3 == n + p) {
                     count++;
                     logger.info("(" + n + "," + p + "," + c3 + ")");
                     break;
                     
-                } else if(f3 == n + p) {
+                } else if (f3 == n + p) {
                     count++;
                     logger.info("(" + n + "," + p + "," + f3 + ")");
                     break;
                 }
             }
         }
-        
+
         logger.info("count: " + count);
     }
-    
+
     private void preparePrimes(int bound) {
 
         boolean[] field = new boolean[bound];
