@@ -45,9 +45,8 @@ public class P131 {
                     count++;
                     logger.info("(" + n + "," + p + "," + c3 + ")");
                     break;
-                }
-                
-                if(f3 == n + p) {
+                    
+                } else if(f3 == n + p) {
                     count++;
                     logger.info("(" + n + "," + p + "," + f3 + ")");
                     break;
