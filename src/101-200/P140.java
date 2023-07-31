@@ -5,8 +5,6 @@ import java.math.BigInteger;
 
 public class P140 {
     
-    private final BigInteger _3 = new BigInteger("3");
-    
     private final BigInteger _5 = new BigInteger("5");
     
     private final BigInteger _14 = new BigInteger("14");
