@@ -10,8 +10,8 @@ public class P140 {
     private final BigInteger _14 = new BigInteger("14");
     
     private final BigDecimal[] LBOUNDS = {
-        new BigDecimal("3.535322"),
-        new BigDecimal("1.938748")
+        new BigDecimal("3.53532216"),
+        new BigDecimal("1.93874890")
     };
     
     public static void main(String[] args) {
