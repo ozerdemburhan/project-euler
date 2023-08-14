@@ -26,103 +26,88 @@ public class P146 {
         logger.info("finished.");
     }
     
-    private class Processor implements Runnable {
-        
-        private final List<Integer> seq = Arrays.asList(1, 3, 7, 9, 13, 27);
-        
-        private final List<Integer> exclude = Arrays.asList(2, 4, 5, 6, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26);
-        
-        private List<Long> list;
-        
-        
-        public Processor(List<Long> list) {
-            this.list = list;
-        }
-        
-        @Override
-        public void run() {
-            List<Long> numbers = new ArrayList<>();
-            
-            for(long n : list) {
-                long n2 = n * n;
-                
-                boolean ok = true;
-                for (int diff : seq) {
-                    if (!isPrime(n2 + diff, n)) {
-                        ok = false;
-                        break;
-                    }
-                }
-
-                if (ok) {
-                    numbers.add(n);
-                    logger.info(numbers.toString());
-                }            
-            }
-            
-            logger.info(numbers.toString());
-            
-            int size = numbers.size();
-
-            for (int i = size - 1; i >= 0; i--) {
-                long n = numbers.get(i), n2 = n * n;
-
-                for (int diff : exclude) {
-                    if (isPrime(n2 + diff, n)) {
-                        numbers.remove(i);
-                        break;
-                    }
-                }
-            }
-            
-            for(long n : numbers) {
-                sum += n;
-            }
-            
-            logger.info("sum: " + sum);
-        }
-        
-    }
-    
     private void start() {
         
         final long BOUND = 150_000_000;
         
         preparePrimes((int) BOUND);
         
-        List<Long> list = new ArrayList<>();
+        List<Long> numbers = new ArrayList<>();
+        
+        final int[] diffs = {1,3,7,9,13,27};
         
         for(long n = 10; n < BOUND; n += 10) {
+            
+            if(n % 1_000_000 == 0) {
+                logger.info("" + n);
+            }
+            
             if(!check(n)) {
                 continue;
             }
             
-            list.add(n);
-        }
-        
-        logger.info("size: " + list.size());
-        
-        final int[] ratios = {70, 35, 25, 20};
-        
-        int step = list.size() / 150;
-        
-        int start = 0;
-        
-        for(int i = 0; i < ratios.length; i++) {
+            long n2 = n*n;
+            boolean prime = true;
             
-            int end = start + step * ratios[i];
-            if(i == ratios.length - 1) {
-                end = list.size();
+            for(int diff : diffs) {
+                if(!isPrimeEx(n2 + diff, n)) {
+                    prime = false;
+                    break;
+                }
             }
             
-            List<Long> numbers = list.subList(start, end);
-            
-            Processor p = new Processor(numbers);
-            Thread t = new Thread(p);
-            t.start();
-            start = end;
+            if(prime) {
+                numbers.add(n); 
+            }
         }
         
+        logger.info("size: " + numbers.size());
+        int size = numbers.size();
+        
+        int count = 0;
+        
+        for(int i = size - 1; i >= 0; i--) {
+            
+            if(++count % 100 == 0) {
+                logger.info("" + count);
+            }
+            
+            long n = numbers.get(i);
+            long n2 = n*n;
+            
+            for(int diff : diffs) {
+                if(!isPrime(n2 + diff, n)) {
+                    numbers.remove(i);
+                    break;
+                }
+            }
+        }
+        
+        size = numbers.size();
+        List<Integer> seq = Arrays.asList(1,3,7,9,13,27);
+        
+        for(int i = size - 1; i >= 0; i--) {
+            long n = numbers.get(i);
+            long n2 = n*n;
+            
+            for(int diff = 1; diff <= 27; diff++) {
+                if(seq.indexOf(diff) != -1) {
+                    continue;
+                }
+                
+                if(isPrime(n2 + diff, n)) {
+                    numbers.remove(i);
+                }
+            }
+        }
+        
+        long sum = 0;
+        for(long n : numbers) {
+            sum += n;
+        }
+        
+        logger.info(numbers.toString());
+        logger.info("sum: " + sum);
     }
 
     private boolean check(long n) {
@@ -141,6 +126,30 @@ public class P146 {
         
         return true;
     }
+    
+    private boolean isPrimeEx(long n2, long n) {
+
+        if (n2 == 1) {
+            return false;
+        }
+        
+        long bound = n + 1;
+        bound = bound < 10_000 ? bound : 10_000;
+        
+        for (long p : PRIMES) {
+            
+            if(p > bound) {
+                break;
+            }
+
+            if (n2 % p == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
 
     private boolean isPrime(long n2, long n) {
 
