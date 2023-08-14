@@ -3,7 +3,6 @@ package com.apkbilisim.pe.p146;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,10 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 public class P146 {
 
     private List<Long>        PRIMES = new ArrayList<>();
-
-    private final Set<String> POST   = Set.of("10", "70", "00");
-    
-    private volatile long sum = 0;
 
     public static void main(String[] args) {
 
