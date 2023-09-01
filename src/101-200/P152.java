@@ -11,7 +11,7 @@ import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class P152_12 {
+public class P152 {
     
     private final R      R2     = new R(1, 2);
 
@@ -27,7 +27,7 @@ public class P152_12 {
 
         logger.info("started.");
 
-        P152_12 problem = new P152_12();
+        P152 problem = new P152();
         try {
             problem.start();
         } catch (Exception e) {
@@ -227,3 +227,10 @@ class R implements Comparable<R> {
         return num.compareTo(onum);
     }
 }
+
+
+
+
+
+
+
